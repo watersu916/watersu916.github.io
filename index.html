@@ -250,6 +250,24 @@
             }
         }
 
+        .cyber-toggle {
+            padding: 0.5rem 1.5rem;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cyber-toggle:hover {
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+            box-shadow: 0 0 20px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
         @media (max-width: 768px) {
             body {
                 padding: 1rem;
@@ -283,7 +301,11 @@
         <section class="hero">
             <div style="margin-bottom: 10px; color: var(--secondary-color);">Last login: <span id="current-date"></span>
                 on tty01</div>
-            <h1 class="hero-title" id="hero-greeting"></h1>
+            <div class="hero-header-wrap"
+                style="display: flex; align-items: center; justify-content: center; gap: 2rem; margin-bottom: 1.5rem;">
+                <h1 class="hero-title" id="hero-greeting" style="margin-bottom: 0;"></h1>
+                <a href="aespa.html" class="cyber-toggle"> [SYNK_OUT] </a>
+            </div>
             <p class="hero-desc" contenteditable="true">
                 터미널 테마를 좋아하시는군요! 저는 고전적인 감성과 현대적인 기술력을 결합하는 프론트엔드 개발자입니다.
                 모든 텍스트는 명령어를 입력하듯 이곳에서 직접 수정할 수 있습니다.

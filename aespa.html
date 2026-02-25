@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WATERSU // SYNK OUT</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- React & ReactDOM (Development version for easier debugging, change to production later) -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Syncopate:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        @keyframes drift {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes glitch {
+            0% {
+                transform: translate(0)
+            }
+
+            20% {
+                transform: translate(-2px, 2px)
+            }
+
+            40% {
+                transform: translate(-2px, -2px)
+            }
+
+            60% {
+                transform: translate(2px, 2px)
+            }
+
+            80% {
+                transform: translate(2px, -2px)
+            }
+
+            100% {
+                transform: translate(0)
+            }
+        }
+
+        .cyber-bg {
+            background: radial-gradient(circle at 50% 50%, #1a1a2e 0%, #0f0f1b 100%);
+        }
+
+        .aura {
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: drift 20s linear infinite;
+        }
+
+        .cyber-text {
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.5em;
+            background: linear-gradient(135deg, #fff 0%, #a855f7 50%, #22d3ee 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(168, 85, 247, 0.5);
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .chrome-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.5s ease;
+        }
+
+        .chrome-card:hover {
+            border-color: #a855f7;
+            transform: scale(1.02) translateY(-10px);
+            box-shadow: 0 0 40px rgba(168, 85, 247, 0.3);
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .glitch-hover:hover {
+            animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+        }
+    </style>
+</head>
+
+<body class="cyber-bg text-white min-h-screen">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const CyberPortfolio = () => {
+            const [activeSection, setActiveSection] = useState('home');
+
+            return (
+                <div className="relative">
+                    {/* Background Auras */}
+                    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+                        <div className="aura absolute top-[-20%] left-[-10%] w-[60vw] h-[60vw] bg-purple-600 rounded-full"></div>
+                        <div className="aura absolute bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] bg-cyan-600 rounded-full" style={{ animationDirection: 'reverse' }}></div>
+                    </div>
+
+                    {/* Navigation */}
+                    <nav className="fixed top-0 w-full z-50 flex justify-between items-center px-12 py-8 glass">
+                        <div className="text-2xl font-bold tracking-[1em] text-cyan-400 cyber-text">SYNK</div>
+                        <div className="space-x-12 uppercase tracking-widest text-sm">
+                            <a href="index.html" className="hover:text-cyan-400 transition-colors">Back to Terminal</a>
+                            <button onClick={() => setActiveSection('home')} className="hover:text-purple-400 transition-colors">Intro</button>
+                            <button onClick={() => setActiveSection('sync')} className="hover:text-purple-400 transition-colors">SYNK</button>
+                        </div>
+                    </nav>
+
+                    {/* Hero Section */}
+                    <main className="relative z-10 pt-40 flex flex-col items-center justify-center min-h-screen px-6">
+                        <div className="text-center">
+                            <p className="text-cyan-400 tracking-[0.5em] mb-4 text-sm font-bold uppercase animate-pulse">Connection Established</p>
+                            <h1 className="cyber-text text-6xl md:text-9xl font-black mb-8 leading-tight glitch-hover">WATERSU</h1>
+                            <p className="text-xl max-w-2xl mx-auto text-gray-400 leading-relaxed font-light">
+                                <span className="text-white font-bold">NEXT LEVEL</span> 프론트엔드 아티스트.
+                                가상과 현실을 잇는 디지털 멀티버스를 구축합니다.
+                                우리는 하나로 연결되어 SYNK 됩니다.
+                            </p>
+                        </div>
+
+                        <div className="flex gap-8 mt-16">
+                            <div className="chrome-card p-1 z-10 rounded-2xl group">
+                                <div className="bg-[#0f0f1b] p-8 rounded-2xl">
+                                    <h3 className="text-2xl font-bold text-purple-400 mb-2">AE-SKILLS</h3>
+                                    <p className="text-gray-500 text-sm">React, Next.js, Framer Motion, Three.js</p>
+                                </div>
+                            </div>
+                            <div className="chrome-card p-1 z-10 rounded-2xl group">
+                                <div className="bg-[#0f0f1b] p-8 rounded-2xl">
+                                    <h3 className="text-2xl font-bold text-cyan-400 mb-2">SYNK-DATA</h3>
+                                    <p className="text-gray-500 text-sm">API Orchestration, State Management</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="mt-32 text-center pb-20">
+                            <div className="inline-block glass rounded-full px-8 py-4 border border-cyan-500/30 text-cyan-300 animate-bounce cursor-pointer">
+                                SCROLL TO CONNECT
+                            </div>
+                        </div>
+                    </main>
+
+                    {/* Footer / Meta Data */}
+                    <footer className="relative z-10 p-12 text-center text-gray-600 text-xs tracking-widest">
+                        VERSION 2.0 // © 2026 WATERSU DIGITAL ENTITY. ALL RIGHTS RESERVED.
+                    </footer>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<CyberPortfolio />);
+    </script>
+</body>
+
+</html>
