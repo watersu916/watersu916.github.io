@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WATERSU // SYNK OUT</title>
+    <title>WATERSU // SAVAGE // SYNK OUT</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- React & ReactDOM (Development version for easier debugging, change to production later) -->
+    <!-- React & ReactDOM -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <!-- Babel for JSX -->
@@ -18,163 +18,260 @@
         rel="stylesheet">
 
     <style>
-        @keyframes drift {
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        @keyframes glitch {
-            0% {
-                transform: translate(0)
-            }
-
-            20% {
-                transform: translate(-2px, 2px)
-            }
-
-            40% {
-                transform: translate(-2px, -2px)
-            }
-
-            60% {
-                transform: translate(2px, 2px)
-            }
-
-            80% {
-                transform: translate(2px, -2px)
-            }
-
-            100% {
-                transform: translate(0)
-            }
-        }
-
-        .cyber-bg {
-            background: radial-gradient(circle at 50% 50%, #1a1a2e 0%, #0f0f1b 100%);
-        }
-
-        .aura {
-            filter: blur(80px);
-            opacity: 0.4;
-            animation: drift 20s linear infinite;
-        }
-
-        .cyber-text {
-            font-family: 'Syncopate', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 0.5em;
-            background: linear-gradient(135deg, #fff 0%, #a855f7 50%, #22d3ee 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(168, 85, 247, 0.5);
-        }
-
-        .glass {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
-        }
-
-        .chrome-card {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.5s ease;
-        }
-
-        .chrome-card:hover {
-            border-color: #a855f7;
-            transform: scale(1.02) translateY(-10px);
-            box-shadow: 0 0 40px rgba(168, 85, 247, 0.3);
+        :root {
+            --chrome: linear-gradient(135deg, #f3f4f6 0%, #9ca3af 25%, #4b5563 50%, #9ca3af 75%, #f3f4f6 100%);
+            --savage-purple: #a855f7;
+            --savage-cyan: #22d3ee;
         }
 
         body {
+            background-color: #000;
             font-family: 'Rajdhani', sans-serif;
             overflow-x: hidden;
+            color: #fff;
         }
 
-        .glitch-hover:hover {
-            animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+        /* --- Liquid Metal / Chrome Text Effect --- */
+        .chrome-text {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            background: var(--chrome);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+            position: relative;
+            letter-spacing: -0.05em;
+        }
+
+        /* SVG Filter for Liquid Chrome */
+        .chrome-filter {
+            filter: url(#liquid-chrome);
+        }
+
+        .savage-container {
+            position: relative;
+            background: radial-gradient(circle at 50% 50%, #17101f 0%, #000 100%);
+            min-height: 100vh;
+        }
+
+        /* Spikey Background Elements */
+        .spike {
+            position: absolute;
+            background: linear-gradient(to top, transparent, var(--savage-purple));
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            opacity: 0.1;
+            filter: blur(2px);
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.01);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-panel:hover {
+            border-color: var(--savage-purple);
+            background: rgba(168, 85, 247, 0.05);
+            transform: translateY(-5px) scale(1.01);
+        }
+
+        .nav-item {
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            font-size: 0.75rem;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--savage-cyan);
+            transition: 0.3s;
+        }
+
+        .nav-item:hover::after {
+            width: 100%;
+        }
+
+        /* Glitch Animation */
+        @keyframes SavageGlitch {
+            0% {
+                clip-path: inset(10% 0 10% 0);
+            }
+
+            10% {
+                clip-path: inset(50% 0 30% 0);
+            }
+
+            20% {
+                clip-path: inset(20% 0 60% 0);
+            }
+
+            30% {
+                clip-path: inset(40% 0 10% 0);
+            }
+
+            100% {
+                clip-path: inset(10% 0 10% 0);
+            }
+        }
+
+        .glitch-active:hover {
+            animation: SavageGlitch 0.2s infinite linear alternate-reverse;
         }
     </style>
 </head>
 
-<body class="cyber-bg text-white min-h-screen">
+<body class="savage-container">
     <div id="root"></div>
+
+    <!-- Liquid Chrome SVG Filter -->
+    <svg style="display:none">
+        <filter id="liquid-chrome">
+            <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="10" />
+            <feSpecularLighting surfaceScale="5" specularConstant="1" specularExponent="40" lighting-color="#fff">
+                <fePointLight x="50" y="50" z="200" />
+            </feSpecularLighting>
+            <feComposite in="SourceGraphic" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" />
+        </filter>
+    </svg>
 
     <script type="text/babel">
         const { useState, useEffect } = React;
 
-        const CyberPortfolio = () => {
-            const [activeSection, setActiveSection] = useState('home');
+        const SavageLogo = ({ text }) => {
+            return (
+                <div className="relative group cursor-none">
+                    <h1 className="text-7xl md:text-[10rem] chrome-text chrome-filter select-none animate-pulse">
+                        {text}
+                    </h1>
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="w-[120%] h-[20%] bg-purple-500/20 blur-xl rotate-12"></div>
+                    </div>
+                </div>
+            );
+        };
+
+        const SavagePortfolio = () => {
+            const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+            useEffect(() => {
+                const handleMouseMove = (e) => setMousePos({ x: e.clientX, y: e.clientY });
+                window.addEventListener('mousemove', handleMouseMove);
+                return () => window.removeEventListener('mousemove', handleMouseMove);
+            }, []);
 
             return (
-                <div className="relative">
-                    {/* Background Auras */}
-                    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-                        <div className="aura absolute top-[-20%] left-[-10%] w-[60vw] h-[60vw] bg-purple-600 rounded-full"></div>
-                        <div className="aura absolute bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] bg-cyan-600 rounded-full" style={{ animationDirection: 'reverse' }}></div>
-                    </div>
+                <div className="min-h-screen relative flex flex-col items-center overflow-hidden">
+                    {/* Dynamic Aura */}
+                    <div
+                        className="fixed pointer-events-none w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-[120px] transition-transform duration-300 ease-out"
+                        style={{
+                            transform: `translate(${mousePos.x - 300}px, ${mousePos.y - 300}px)`
+                        }}
+                    ></div>
 
                     {/* Navigation */}
-                    <nav className="fixed top-0 w-full z-50 flex justify-between items-center px-12 py-8 glass">
-                        <div className="text-2xl font-bold tracking-[1em] text-cyan-400 cyber-text">SYNK</div>
-                        <div className="space-x-12 uppercase tracking-widest text-sm">
-                            <a href="index.html" className="hover:text-cyan-400 transition-colors">Back to Terminal</a>
-                            <button onClick={() => setActiveSection('home')} className="hover:text-purple-400 transition-colors">Intro</button>
-                            <button onClick={() => setActiveSection('sync')} className="hover:text-purple-400 transition-colors">SYNK</button>
+                    <nav className="fixed top-0 w-full z-50 flex justify-between items-center px-12 py-10">
+                        <div className="text-xl font-black italic tracking-tighter">SAVAGE_WS</div>
+                        <div className="flex gap-12 font-bold">
+                            <a href="index.html" className="nav-item text-gray-400 hover:text-white">// EXIT_SYNK</a>
+                            <a href="#" className="nav-item text-purple-400">// BLACK_MAMBA</a>
+                            <a href="#" className="nav-item text-cyan-400">// KWANGYA</a>
                         </div>
                     </nav>
 
-                    {/* Hero Section */}
-                    <main className="relative z-10 pt-40 flex flex-col items-center justify-center min-h-screen px-6">
-                        <div className="text-center">
-                            <p className="text-cyan-400 tracking-[0.5em] mb-4 text-sm font-bold uppercase animate-pulse">Connection Established</p>
-                            <h1 className="cyber-text text-6xl md:text-9xl font-black mb-8 leading-tight glitch-hover">WATERSU</h1>
-                            <p className="text-xl max-w-2xl mx-auto text-gray-400 leading-relaxed font-light">
-                                <span className="text-white font-bold">NEXT LEVEL</span> 프론트엔드 아티스트.
-                                가상과 현실을 잇는 디지털 멀티버스를 구축합니다.
-                                우리는 하나로 연결되어 SYNK 됩니다.
+                    {/* Main Content */}
+                    <main className="pt-48 flex flex-col items-center z-10 w-full max-w-7xl px-6">
+                        <SavageLogo text="WATERSU" />
+
+                        <div className="mt-12 text-center max-w-3xl">
+                            <p className="text-2xl font-light tracking-[0.2em] uppercase text-gray-300 leading-relaxed mb-12">
+                                I'm the <span className="text-purple-400 font-bold italic">Savage</span>.
+                                가상 세계와 맞서는 디지털 크리에이터.
+                                고정관념을 깨고 새로운 SYNK 패턴을 정의합니다.
                             </p>
                         </div>
 
-                        <div className="flex gap-8 mt-16">
-                            <div className="chrome-card p-1 z-10 rounded-2xl group">
-                                <div className="bg-[#0f0f1b] p-8 rounded-2xl">
-                                    <h3 className="text-2xl font-bold text-purple-400 mb-2">AE-SKILLS</h3>
-                                    <p className="text-gray-500 text-sm">React, Next.js, Framer Motion, Three.js</p>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full mt-12 mb-20">
+                            <div className="glass-panel p-10 rounded-3xl relative overflow-hidden group">
+                                <div className="absolute top-0 right-0 p-4 font-black italic text-4xl opacity-5">01</div>
+                                <h3 className="text-3xl font-bold mb-6 flex items-center gap-4">
+                                    <div className="w-8 h-8 rounded-full bg-purple-500 animate-ping"></div>
+                                    AE_INTERFACE
+                                </h3>
+                                <p className="text-gray-400 leading-relaxed text-lg mb-8">
+                                    사용자의 감각을 자극하는 고도화된 인터랙션 디자인.
+                                    React와 WebGL을 결합하여 경계가 없는 경험을 창조합니다.
+                                </p>
+                                <div className="flex gap-3 flex-wrap">
+                                    {['#SHADER', '#CANVAS', '#MOTION', '#REACT'].map(tag => (
+                                        <span key={tag} className="text-[10px] tracking-widest border border-white/20 px-3 py-1 rounded-full">{tag}</span>
+                                    ))}
                                 </div>
                             </div>
-                            <div className="chrome-card p-1 z-10 rounded-2xl group">
-                                <div className="bg-[#0f0f1b] p-8 rounded-2xl">
-                                    <h3 className="text-2xl font-bold text-cyan-400 mb-2">SYNK-DATA</h3>
-                                    <p className="text-gray-500 text-sm">API Orchestration, State Management</p>
+
+                            <div className="glass-panel p-10 rounded-3xl relative overflow-hidden group">
+                                <div className="absolute top-0 right-0 p-4 font-black italic text-4xl opacity-5">02</div>
+                                <h3 className="text-3xl font-bold mb-6 flex items-center gap-4">
+                                    <div className="w-8 h-8 rounded-full bg-cyan-500 animate-pulse"></div>
+                                    META_CORE
+                                </h3>
+                                <p className="text-gray-400 leading-relaxed text-lg mb-8">
+                                    견고한 데이터 설계와 아키텍처.
+                                    복잡한 시스템 속에서도 명확한 데이터 흐름을 유지하며 넥스트 레벨을 향해 나갑니다.
+                                </p>
+                                <div className="flex gap-3 flex-wrap">
+                                    {['#TS', '#NEXTJS', '#NODE', '#CLOUD'].map(tag => (
+                                        <span key={tag} className="text-[10px] tracking-widest border border-white/20 px-3 py-1 rounded-full">{tag}</span>
+                                    ))}
                                 </div>
                             </div>
                         </div>
 
-                        <div className="mt-32 text-center pb-20">
-                            <div className="inline-block glass rounded-full px-8 py-4 border border-cyan-500/30 text-cyan-300 animate-bounce cursor-pointer">
-                                SCROLL TO CONNECT
-                            </div>
+                        {/* Interactive Bridge */}
+                        <div className="mb-32">
+                            <a
+                                href="index.html"
+                                className="group relative px-12 py-5 border-2 border-white overflow-hidden inline-block"
+                            >
+                                <div className="absolute inset-0 bg-white translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-500"></div>
+                                <span className="relative z-10 font-black italic tracking-widest group-hover:text-black transition-colors">
+                                    RETRIEVE_TERMINAL_SESSION()
+                                </span>
+                            </a>
                         </div>
                     </main>
 
-                    {/* Footer / Meta Data */}
-                    <footer className="relative z-10 p-12 text-center text-gray-600 text-xs tracking-widest">
-                        VERSION 2.0 // © 2026 WATERSU DIGITAL ENTITY. ALL RIGHTS RESERVED.
-                    </footer>
+                    {/* Spikey Elements */}
+                    {[...Array(5)].map((_, i) => (
+                        <div
+                            key={i}
+                            className="spike"
+                            style={{
+                                width: Math.random() * 200 + 50 + 'px',
+                                height: Math.random() * 500 + 200 + 'px',
+                                left: Math.random() * 100 + '%',
+                                top: Math.random() * 100 + '%',
+                                transform: `rotate(${Math.random() * 360}deg)`
+                            }}
+                        ></div>
+                    ))}
                 </div>
             );
         };
 
         const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<CyberPortfolio />);
+        root.render(<SavagePortfolio />);
     </script>
 </body>
 
