@@ -103,6 +103,30 @@
             font-size: clamp(2.5rem, 8vw, 5rem);
             margin-bottom: 1.5rem;
             color: var(--primary-color);
+            display: flex;
+            gap: 0.2rem;
+            flex-wrap: wrap;
+        }
+
+        .char {
+            display: inline-block;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            user-select: none;
+        }
+
+        .char:hover {
+            transform: translateY(-8px);
+            color: white;
+        }
+
+        .char.active {
+            color: var(--bg-color);
+            background-color: var(--primary-color);
+            transform: scale(1.15) rotate(5deg);
+            padding: 0 4px;
+            border-radius: 4px;
+            box-shadow: 0 0 15px var(--accent-glow);
         }
 
         .hero-desc {
@@ -259,7 +283,7 @@
         <section class="hero">
             <div style="margin-bottom: 10px; color: var(--secondary-color);">Last login: <span id="current-date"></span>
                 on tty01</div>
-            <h1 class="hero-title">Hello, watersu</h1>
+            <h1 class="hero-title" id="hero-greeting"></h1>
             <p class="hero-desc" contenteditable="true">
                 터미널 테마를 좋아하시는군요! 저는 고전적인 감성과 현대적인 기술력을 결합하는 프론트엔드 개발자입니다.
                 모든 텍스트는 명령어를 입력하듯 이곳에서 직접 수정할 수 있습니다.
@@ -332,6 +356,34 @@
         window.onclick = function (event) {
             if (event.target == modal) closeModal();
         }
+
+        // Interactive Hero Text
+        const greetingContainer = document.getElementById('hero-greeting');
+        const greetingText = "Hello, watersu";
+
+        function initGreeting() {
+            greetingText.split('').forEach((char, i) => {
+                const span = document.createElement('span');
+                span.textContent = char === ' ' ? '\u00A0' : char;
+                span.classList.add('char');
+                span.style.transitionDelay = `${i * 30}ms`;
+
+                span.onclick = () => {
+                    span.classList.toggle('active');
+                    // Random pop direction
+                    const rotate = (Math.random() - 0.5) * 20;
+                    if (span.classList.contains('active')) {
+                        span.style.transform = `scale(1.2) rotate(${rotate}deg) translateY(-5px)`;
+                    } else {
+                        span.style.transform = '';
+                    }
+                };
+
+                greetingContainer.appendChild(span);
+            });
+        }
+
+        initGreeting();
 
         // Typing effect logic could be added here for more 'terminal' feel
     </script>
