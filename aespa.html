@@ -19,9 +19,11 @@
 
     <style>
         :root {
-            --chrome: linear-gradient(135deg, #f3f4f6 0%, #9ca3af 25%, #4b5563 50%, #9ca3af 75%, #f3f4f6 100%);
-            --savage-purple: #a855f7;
-            --savage-cyan: #22d3ee;
+            --chrome-light: #ffffff;
+            --chrome-mid: #9ca3af;
+            --chrome-dark: #374151;
+            --savage-purple: #9333ea;
+            --savage-blue: #06b6d4;
         }
 
         body {
@@ -29,243 +31,296 @@
             font-family: 'Rajdhani', sans-serif;
             overflow-x: hidden;
             color: #fff;
+            margin: 0;
         }
 
-        /* --- Liquid Metal / Chrome Text Effect --- */
+        /* --- Savage High-Contrast Chrome --- */
         .chrome-text {
             font-family: 'Orbitron', sans-serif;
             font-weight: 900;
-            background: var(--chrome);
+            background: linear-gradient(180deg,
+                    var(--chrome-light) 0%,
+                    var(--chrome-mid) 45%,
+                    var(--chrome-dark) 50%,
+                    var(--chrome-mid) 55%,
+                    var(--chrome-light) 100%);
+            background-size: 100% 200%;
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
-            position: relative;
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.4)) url(#liquid-chrome);
             letter-spacing: -0.05em;
+            animation: chrome-shine 5s linear infinite;
         }
 
-        /* SVG Filter for Liquid Chrome */
-        .chrome-filter {
-            filter: url(#liquid-chrome);
+        @keyframes chrome-shine {
+            from {
+                background-position: 0% 0%;
+            }
+
+            to {
+                background-position: 0% 200%;
+            }
         }
 
         .savage-container {
             position: relative;
-            background: radial-gradient(circle at 50% 50%, #17101f 0%, #000 100%);
+            background: radial-gradient(circle at 50% 50%, #110d1a 0%, #000 100%);
             min-height: 100vh;
+            width: 100vw;
         }
 
-        /* Spikey Background Elements */
-        .spike {
+        /* Metallic Spikes (SVG Shapes) */
+        .metallic-spike {
             position: absolute;
-            background: linear-gradient(to top, transparent, var(--savage-purple));
-            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-            opacity: 0.1;
-            filter: blur(2px);
+            pointer-events: none;
+            z-index: 1;
+            filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.3));
         }
 
         .glass-panel {
-            background: rgba(255, 255, 255, 0.01);
-            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.1),
+                    transparent);
+            transition: 0.5s;
+        }
+
+        .glass-panel:hover::before {
+            left: 150%;
         }
 
         .glass-panel:hover {
             border-color: var(--savage-purple);
-            background: rgba(168, 85, 247, 0.05);
-            transform: translateY(-5px) scale(1.01);
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 20px 50px rgba(147, 51, 234, 0.2);
         }
 
-        .nav-item {
+        /* Cyber Nav Hooks */
+        .nav-hook {
+            font-family: 'Syncopate', sans-serif;
             text-transform: uppercase;
-            letter-spacing: 0.3em;
-            font-size: 0.75rem;
-            transition: 0.3s;
-            position: relative;
+            font-size: 0.7rem;
+            letter-spacing: 0.4em;
+            color: #666;
+            transition: 0.4s;
         }
 
-        .nav-item::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
+        .nav-hook:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #fff;
+        }
+
+        /* Glitch Scanline Overlay */
+        .scanlines {
+            position: fixed;
+            top: 0;
             left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--savage-cyan);
-            transition: 0.3s;
-        }
-
-        .nav-item:hover::after {
             width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom,
+                    rgba(18, 16, 16, 0) 50%,
+                    rgba(0, 0, 0, 0.1) 50%);
+            background-size: 100% 4px;
+            z-index: 20;
+            pointer-events: none;
+            opacity: 0.3;
         }
 
-        /* Glitch Animation */
-        @keyframes SavageGlitch {
-            0% {
-                clip-path: inset(10% 0 10% 0);
-            }
-
-            10% {
-                clip-path: inset(50% 0 30% 0);
-            }
-
-            20% {
-                clip-path: inset(20% 0 60% 0);
-            }
-
-            30% {
-                clip-path: inset(40% 0 10% 0);
-            }
-
-            100% {
-                clip-path: inset(10% 0 10% 0);
-            }
+        /* Custom Savage Button */
+        .savage-btn {
+            background: transparent;
+            border: 1px solid #fff;
+            padding: 1rem 3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.5em;
+            position: relative;
+            overflow: hidden;
+            transition: 0.5s;
         }
 
-        .glitch-active:hover {
-            animation: SavageGlitch 0.2s infinite linear alternate-reverse;
+        .savage-btn:hover {
+            background: #fff;
+            color: #000;
+            box-shadow: 0 0 30px #fff;
+        }
+
+        /* Background Animated Glows */
+        .glow-sphere {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.2;
+            z-index: 0;
+            animation: pulse-glow 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            from {
+                transform: scale(1);
+                opacity: 0.1;
+            }
+
+            to {
+                transform: scale(1.5);
+                opacity: 0.3;
+            }
         }
     </style>
 </head>
 
 <body class="savage-container">
+    <div class="scanlines"></div>
     <div id="root"></div>
 
-    <!-- Liquid Chrome SVG Filter -->
+    <!-- Enhanced Liquid Chrome SVG Filter -->
     <svg style="display:none">
         <filter id="liquid-chrome">
-            <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" result="noise" />
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="10" />
-            <feSpecularLighting surfaceScale="5" specularConstant="1" specularExponent="40" lighting-color="#fff">
-                <fePointLight x="50" y="50" z="200" />
+            <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="5" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" result="displace" />
+            <feColorMatrix in="displace" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
+                result="glow" />
+            <feSpecularLighting in="glow" surfaceScale="5" specularConstant="1.2" specularExponent="35"
+                lighting-color="#fff" result="light">
+                <fePointLight x="400" y="-100" z="300" />
             </feSpecularLighting>
-            <feComposite in="SourceGraphic" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" />
+            <feComposite in="light" in2="glow" operator="in" result="chrome" />
+            <feMerge>
+                <feMergeNode in="chrome" />
+                <feMergeNode in="SourceGraphic" />
+            </feMerge>
         </filter>
     </svg>
 
     <script type="text/babel">
         const { useState, useEffect } = React;
 
-        const SavageLogo = ({ text }) => {
-            return (
-                <div className="relative group cursor-none">
-                    <h1 className="text-7xl md:text-[10rem] chrome-text chrome-filter select-none animate-pulse">
-                        {text}
-                    </h1>
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div className="w-[120%] h-[20%] bg-purple-500/20 blur-xl rotate-12"></div>
-                    </div>
-                </div>
-            );
-        };
-
         const SavagePortfolio = () => {
-            const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+            const [mouse, setMouse] = useState({ x: 0, y: 0 });
 
             useEffect(() => {
-                const handleMouseMove = (e) => setMousePos({ x: e.clientX, y: e.clientY });
-                window.addEventListener('mousemove', handleMouseMove);
-                return () => window.removeEventListener('mousemove', handleMouseMove);
+                const handleMove = (e) => setMouse({ x: e.clientX, y: e.clientY });
+                window.addEventListener('mousemove', handleMove);
+                return () => window.removeEventListener('mousemove', handleMove);
             }, []);
 
             return (
-                <div className="min-h-screen relative flex flex-col items-center overflow-hidden">
-                    {/* Dynamic Aura */}
-                    <div
-                        className="fixed pointer-events-none w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-[120px] transition-transform duration-300 ease-out"
-                        style={{
-                            transform: `translate(${mousePos.x - 300}px, ${mousePos.y - 300}px)`
-                        }}
-                    ></div>
+                <div className="relative min-h-screen overflow-hidden">
+                    {/* Animated Background Glows */}
+                    <div className="glow-sphere w-[600px] h-[600px] bg-purple-700 top-[-10%] left-[-10%]" />
+                    <div className="glow-sphere w-[500px] h-[500px] bg-cyan-800 bottom-[-10%] right-[-10%]" />
 
                     {/* Navigation */}
-                    <nav className="fixed top-0 w-full z-50 flex justify-between items-center px-12 py-10">
-                        <div className="text-xl font-black italic tracking-tighter">SAVAGE_WS</div>
-                        <div className="flex gap-12 font-bold">
-                            <a href="index.html" className="nav-item text-gray-400 hover:text-white">// EXIT_SYNK</a>
-                            <a href="#" className="nav-item text-purple-400">// BLACK_MAMBA</a>
-                            <a href="#" className="nav-item text-cyan-400">// KWANGYA</a>
+                    <nav className="fixed top-0 w-full z-50 flex justify-between items-center px-12 py-10 mix-blend-difference">
+                        <div className="font-black tracking-tighter text-2xl">SAVAGE_WS</div>
+                        <div className="flex gap-10">
+                            <a href="index.html" className="nav-hook">// EXIT</a>
+                            <a href="#" className="nav-hook">// SYNK</a>
+                            <a href="#" className="nav-hook">// DATA</a>
                         </div>
                     </nav>
 
-                    {/* Main Content */}
-                    <main className="pt-48 flex flex-col items-center z-10 w-full max-w-7xl px-6">
-                        <SavageLogo text="WATERSU" />
+                    {/* Main Hero */}
+                    <main className="relative z-10 pt-48 flex flex-col items-center px-6">
+                        <div className="relative mb-8">
+                            <p className="text-center text-[10px] tracking-[1em] text-purple-400 mb-6 uppercase">Syncing with Black Mamba...</p>
+                            <h1 className="chrome-text text-7xl md:text-[11rem] leading-none mb-4 glitch-hover">
+                                WATERSU
+                            </h1>
+                            {/* Metallic Spike SVGs */}
+                            <svg className="metallic-spike absolute -top-20 -left-20 w-40 h-40 opacity-50" viewBox="0 0 100 100">
+                                <path d="M50 0 L60 40 L100 50 L60 60 L50 100 L40 60 L0 50 L40 40 Z" fill="url(#spike-grad)" />
+                                <defs>
+                                    <linearGradient id="spike-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style={{ stopColor: '#fff', stopOpacity: 1 }} />
+                                        <stop offset="50%" style={{ stopColor: '#666', stopOpacity: 1 }} />
+                                        <stop offset="100%" style={{ stopColor: '#000', stopOpacity: 1 }} />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
 
-                        <div className="mt-12 text-center max-w-3xl">
-                            <p className="text-2xl font-light tracking-[0.2em] uppercase text-gray-300 leading-relaxed mb-12">
-                                I'm the <span className="text-purple-400 font-bold italic">Savage</span>.
-                                가상 세계와 맞서는 디지털 크리에이터.
-                                고정관념을 깨고 새로운 SYNK 패턴을 정의합니다.
+                        <div className="text-center max-w-4xl mt-12">
+                            <p className="text-xl md:text-3xl font-light tracking-wide text-gray-400 leading-snug">
+                                <span className="text-white font-bold italic">NEXT LEVEL</span> 프론트엔드 아키텍처.
+                                가상 세계와 맞서는 <span className="text-purple-500 font-black">KWANGYA</span>의 크리에이티브 데이터.
                             </p>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full mt-12 mb-20">
-                            <div className="glass-panel p-10 rounded-3xl relative overflow-hidden group">
-                                <div className="absolute top-0 right-0 p-4 font-black italic text-4xl opacity-5">01</div>
-                                <h3 className="text-3xl font-bold mb-6 flex items-center gap-4">
-                                    <div className="w-8 h-8 rounded-full bg-purple-500 animate-ping"></div>
-                                    AE_INTERFACE
-                                </h3>
-                                <p className="text-gray-400 leading-relaxed text-lg mb-8">
-                                    사용자의 감각을 자극하는 고도화된 인터랙션 디자인.
-                                    React와 WebGL을 결합하여 경계가 없는 경험을 창조합니다.
+                        {/* Savage Skill Cards */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full max-w-6xl mt-24 mb-32">
+                            <div className="glass-panel p-12 rounded-[2rem] group">
+                                <div className="text-purple-500 mb-6 text-sm tracking-[0.4em] font-bold mt-2">MODULE_01</div>
+                                <h3 className="text-4xl font-black mb-6 tracking-tight">SYNK_INTERFACE</h3>
+                                <p className="text-gray-500 text-lg leading-relaxed mb-10">
+                                    고도의 시각적 자극과 사용자 경험을 결합한 인터페이스 최적화.
+                                    React 기반의 복잡한 상태 관리와 부드러운 전환을 구축합니다.
                                 </p>
-                                <div className="flex gap-3 flex-wrap">
-                                    {['#SHADER', '#CANVAS', '#MOTION', '#REACT'].map(tag => (
-                                        <span key={tag} className="text-[10px] tracking-widest border border-white/20 px-3 py-1 rounded-full">{tag}</span>
-                                    ))}
+                                <div className="flex gap-4 opacity-50 text-[10px] tracking-widest font-bold">
+                                    <span>#FRAMER_MOTION</span>
+                                    <span>#WEBGL</span>
+                                    <span>#TYPESCRIPT</span>
                                 </div>
                             </div>
 
-                            <div className="glass-panel p-10 rounded-3xl relative overflow-hidden group">
-                                <div className="absolute top-0 right-0 p-4 font-black italic text-4xl opacity-5">02</div>
-                                <h3 className="text-3xl font-bold mb-6 flex items-center gap-4">
-                                    <div className="w-8 h-8 rounded-full bg-cyan-500 animate-pulse"></div>
-                                    META_CORE
-                                </h3>
-                                <p className="text-gray-400 leading-relaxed text-lg mb-8">
-                                    견고한 데이터 설계와 아키텍처.
-                                    복잡한 시스템 속에서도 명확한 데이터 흐름을 유지하며 넥스트 레벨을 향해 나갑니다.
+                            <div className="glass-panel p-12 rounded-[2rem] group">
+                                <div className="text-cyan-500 mb-6 text-sm tracking-[0.4em] font-bold mt-2">MODULE_02</div>
+                                <h3 className="text-4xl font-black mb-6 tracking-tight">CORE_ORCHESTRA</h3>
+                                <p className="text-gray-500 text-lg leading-relaxed mb-10">
+                                    견고하고 확장 가능한 서버리스 아키텍처와 API 설계.
+                                    대규모 트래픽을 견디는 데이터 흐름을 오케스트레이션합니다.
                                 </p>
-                                <div className="flex gap-3 flex-wrap">
-                                    {['#TS', '#NEXTJS', '#NODE', '#CLOUD'].map(tag => (
-                                        <span key={tag} className="text-[10px] tracking-widest border border-white/20 px-3 py-1 rounded-full">{tag}</span>
-                                    ))}
+                                <div className="flex gap-4 opacity-50 text-[10px] tracking-widest font-bold">
+                                    <span>#NEXT_JS</span>
+                                    <span>#AWS</span>
+                                    <span>#GRAPHQL</span>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Interactive Bridge */}
-                        <div className="mb-32">
-                            <a
-                                href="index.html"
-                                className="group relative px-12 py-5 border-2 border-white overflow-hidden inline-block"
-                            >
-                                <div className="absolute inset-0 bg-white translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-500"></div>
-                                <span className="relative z-10 font-black italic tracking-widest group-hover:text-black transition-colors">
-                                    RETRIEVE_TERMINAL_SESSION()
-                                </span>
+                        {/* Dimensional Link */}
+                        <div className="mb-40 group">
+                            <a href="index.html" className="savage-btn block relative z-10">
+                                <span className="relative z-10">Return to Terminal</span>
+                                <div className="absolute inset-0 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left -z-10"></div>
                             </a>
                         </div>
                     </main>
 
-                    {/* Spikey Elements */}
-                    {[...Array(5)].map((_, i) => (
-                        <div
-                            key={i}
-                            className="spike"
-                            style={{
-                                width: Math.random() * 200 + 50 + 'px',
-                                height: Math.random() * 500 + 200 + 'px',
-                                left: Math.random() * 100 + '%',
-                                top: Math.random() * 100 + '%',
-                                transform: `rotate(${Math.random() * 360}deg)`
-                            }}
-                        ></div>
-                    ))}
+                    {/* Draggable/Animated Metallic Shapes Background */}
+                    <div className="fixed inset-0 pointer-events-none">
+                        {[...Array(8)].map((_, i) => (
+                            <div
+                                key={i}
+                                className="absolute bg-white/5"
+                                style={{
+                                    width: Math.random() * 2 + 'px',
+                                    height: Math.random() * 300 + 100 + 'px',
+                                    left: Math.random() * 100 + '%',
+                                    top: Math.random() * 100 + '%',
+                                    transform: `rotate(${Math.random() * 45}deg)`,
+                                    opacity: 0.1
+                                }}
+                            />
+                        ))}
+                    </div>
                 </div>
             );
         };
