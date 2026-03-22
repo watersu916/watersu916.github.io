@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WAS Infrastructure - Detail</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;
+      color: #0f172a;
+      transition: background 0.5s, color 0.5s;
+      line-height: 1.6;
+    }
+    body.dark {
+      background: #0f172a;
+      color: #e5e7eb;
+    }
+    header {
+      padding: 40px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .back-btn {
+      text-decoration: none;
+      color: #2563eb;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 30px;
+      transition: transform 0.2s;
+    }
+    .back-btn:hover {
+      transform: translateX(-5px);
+    }
+    .content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 40px 100px;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    .tag-container {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    .tag {
+      padding: 6px 14px;
+      background: #f1f5f9;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      color: #475569;
+    }
+    body.dark .tag {
+      background: #334155;
+      color: #cbd5e1;
+    }
+    section {
+      margin-bottom: 50px;
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      border-left: 4px solid #2563eb;
+      padding-left: 15px;
+    }
+    p {
+      color: #475569;
+      margin-bottom: 15px;
+    }
+    body.dark p {
+      color: #94a3b8;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    li {
+      margin-bottom: 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    li::before {
+      content: '✓';
+      color: #2563eb;
+      font-weight: bold;
+    }
+    .project-image {
+      width: 100%;
+      height: 400px;
+      background: #f1f5f9;
+      border-radius: 20px;
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #94a3b8;
+      font-weight: 600;
+      border: 1px solid #e2e8f0;
+    }
+    body.dark .project-image {
+      background: #1e293b;
+      border-color: #334155;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="back-btn">← Back to Portfolio</a>
+</header>
+
+<main class="content">
+  <div class="project-image">7-Node Architecture Diagram</div>
+
+  <h1>Manual 7-Node WAS Infrastructure 구축</h1>
+  <div class="tag-container">
+    <span class="tag">VirtualBox</span>
+    <span class="tag">Linux</span>
+    <span class="tag">HAProxy</span>
+    <span class="tag">MySQL</span>
+    <span class="tag">NFS</span>
+    <span class="tag">DNS</span>
+  </div>
+
+  <section>
+    <h2>Overview</h2>
+    <p>
+      VirtualBox 기반 환경에서 7개의 서버를 직접 구축하며 웹 서비스 인프라의 전체 흐름을 이해하고자 한 프로젝트입니다.
+      Load Balancer, Web, NAS, DB, SAN, DNS 구조를 분리하여 구성하고 각 컴포넌트 간의 네트워크 흐름과 역할을 명확히 설계했습니다.
+    </p>
+  </section>
+
+  <section>
+    <h2>Architecture</h2>
+    <ul>
+      <li>Load Balancer: HAProxy 기반 트래픽 분산</li>
+      <li>Web Server: Apache + PHP 기반 WordPress 서비스</li>
+      <li>NAS: NFS 기반 웹 콘텐츠 공유</li>
+      <li>DB Server: MySQL 데이터 관리</li>
+      <li>SAN: iSCSI 기반 스토리지 제공</li>
+      <li>DNS: 도메인 기반 서비스 접근</li>
+      <li>Client: 서비스 접근 테스트</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Key Implementation</h2>
+    <ul>
+      <li>iSCSI 기반 SAN 구성 및 DB 스토리지 분리</li>
+      <li>NFS를 활용한 Web 서버 간 데이터 공유</li>
+      <li>HAProxy를 통한 Web 서버 이중화 및 로드밸런싱</li>
+      <li>DNS 서버 구축을 통한 도메인 기반 접근 환경 구성</li>
+      <li>MySQL 사용자 권한 및 네트워크 접근 제어 설정</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Troubleshooting</h2>
+    <ul>
+      <li>NFS 마운트 실패 → 방화벽 및 SELinux 설정 문제 해결</li>
+      <li>DB 연결 오류 → MySQL 사용자 권한 및 host 설정 수정</li>
+      <li>로드밸런싱 불균형 → HAProxy 설정 튜닝</li>
+      <li>iSCSI 연결 문제 → Initiator/Target 설정 검증</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Impact</h2>
+    <p>
+      단일 서버 환경이 아닌 분산 아키텍처를 직접 구축하며 서비스 구조에 대한 이해도를 높였고,
+      이후 Kubernetes 및 클라우드 기반 인프라 설계로 확장할 수 있는 기반을 마련했습니다.
+    </p>
+  </section>
+</main>
+
+<script>
+  if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark');
+  }
+</script>
+
+</body>
+</html>
