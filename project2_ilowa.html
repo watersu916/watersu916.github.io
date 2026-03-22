@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Project - Detail</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;
+      color: #0f172a;
+      transition: background 0.5s, color 0.5s;
+      line-height: 1.6;
+    }
+    body.dark {
+      background: #0f172a;
+      color: #e5e7eb;
+    }
+    header {
+      padding: 40px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .back-btn {
+      text-decoration: none;
+      color: #2563eb;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 30px;
+      transition: transform 0.2s;
+    }
+    .back-btn:hover {
+      transform: translateX(-5px);
+    }
+    .content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 40px 100px;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    .tag-container {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    .tag {
+      padding: 6px 14px;
+      background: #e2e8f0;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      color: #1f2937;
+      border: 1px solid #cbd5e1;
+    }
+    body.dark .tag {
+      background: #334155;
+      color: #cbd5e1;
+    }
+    .tag:hover {
+      background: #cbd5e1;
+    }
+    section {
+      margin-bottom: 50px;
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      border-left: 4px solid #2563eb;
+      padding-left: 15px;
+    }
+    p {
+      color: #475569;
+      margin-bottom: 15px;
+    }
+    body.dark p {
+      color: #94a3b8;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    li {
+      margin-bottom: 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    li::before {
+      content: '✓';
+      color: #2563eb;
+      font-weight: bold;
+    }
+    .project-image {
+      width: 100%;
+      height: 400px;
+      background: #f1f5f9;
+      border-radius: 20px;
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #94a3b8;
+      font-weight: 600;
+      border: 1px solid #e2e8f0;
+    }
+    body.dark .project-image {
+      background: #1e293b;
+      border-color: #334155;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="back-btn">← Back to Portfolio</a>
+</header>
+
+<main class="content">
+  <div class="project-image">AI Pipeline Architecture</div>
+
+  <h1>AI 기반 시니어 일자리 추천 플랫폼 (ilowa)</h1>
+  <div class="tag-container">
+    <span class="tag">FastAPI</span>
+    <span class="tag">PostgreSQL</span>
+    <span class="tag">Docker</span>
+    <span class="tag">Clova OCR/STT</span>
+    <span class="tag">LLM</span>
+    <span class="tag">React</span>
+  </div>
+
+  <section>
+    <h2>Overview</h2>
+    <p>
+      AI 에이전트를 활용하여 시니어 맞춤형 일자리를 추천하고, 오프라인 공고를 OCR/STT로 구조화하여 플랫폼에 공급하는 서비스입니다.
+      공급자(기관)와 수요자(시니어 구직자)를 연결하는 것을 목표로 설계했습니다.
+    </p>
+  </section>
+
+  <section>
+    <h2>My Role</h2>
+    <ul>
+      <li>백엔드/DB/인프라 설계 및 Docker 기반 실행 환경 구축</li>
+      <li>AI 파이프라인(OCR/STT/LLM) 연동 및 서비스 레이어 설계</li>
+      <li>Git 브랜치 전략 및 배포 환경 설정 관리</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Architecture & Pipeline</h2>
+    <ul>
+      <li>AI 서비스 레이어를 통해 OCR/STT/LLM 기능 캡슐화</li>
+      <li>/ai/recommend, /ai/ocr/parse, /ai/asr/parse API 설계</li>
+      <li>데이터를 orchestrator로 전달하여 파이프라인 구성</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Key Implementation</h2>
+    <ul>
+      <li>Docker Compose 기반 db + api + ai 통합 실행 환경 구축</li>
+      <li>외부 AI API를 서비스 레이어로 래핑하여 의존성 최소화</li>
+      <li>CSV + OCR 데이터 통합 및 PostgreSQL 적재</li>
+      <li>Geocoding을 통한 위치 데이터 자동 보정</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Troubleshooting</h2>
+    <ul>
+      <li>WSL/맥 환경 차이로 Docker 실행 실패 → 경로/포트 문제 해결</li>
+      <li>DB 초기화 순서 문제 → entrypoint에서 healthcheck 기반 실행 순서 보장</li>
+      <li>팀원 환경 불일치 → docker compose 기반 통일된 실행 환경 구축</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Impact</h2>
+    <p>
+      AI 기능과 인프라를 결합한 실제 서비스 형태의 프로젝트를 수행하며,
+      서비스 아키텍처 설계와 DevOps 환경 구축 경험을 동시에 확보했습니다.
+    </p>
+  </section>
+
+</main>
+
+<script>
+  if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark');
+  }
+</script>
+
+</body>
+</html>
