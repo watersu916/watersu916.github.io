@@ -75,8 +75,14 @@
     .projects {
       padding: 100px 40px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 30px;
+    }
+
+    @media (max-width: 768px) {
+      .projects {
+        grid-template-columns: 1fr;
+      }
     }
 
     .card {
@@ -133,6 +139,40 @@
 
     .card a:hover {
       text-decoration: underline;
+    }
+
+    .about {
+      padding: 100px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+
+    .profile-img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(0,65,129,0.5);
+    }
+
+    .about-content {
+      max-width: 600px;
+    }
+
+    .about-content h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      color: #94a3b8;
+      font-size: 0.9rem;
     }
 
     footer {
@@ -216,6 +256,19 @@
 
 </section>
 
+<section class="about">
+  <img src="profile.jpg" alt="profile" class="profile-img">
+  <div class="about-content">
+    <h2>About Me</h2>
+    <div class="timeline">
+      <div>2023 - 클라우드/인프라 학습 시작</div>
+      <div>2024 - Kubernetes, Docker 기반 프로젝트 수행</div>
+      <div>2025 - DevSecOps 및 Zero Trust 아키텍처 구축 경험</div>
+      <div>2026 - 클라우드 인프라 엔지니어 취업 준비</div>
+    </div>
+  </div>
+</section>
+
 <footer>
   © 2026 Cloud Infrastructure Portfolio
 </footer>
@@ -246,3 +299,4 @@
 
 </body>
 </html>
+
