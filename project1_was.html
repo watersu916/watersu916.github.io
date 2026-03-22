@@ -93,18 +93,19 @@
       color: #2563eb;
       font-weight: bold;
     }
+
     .project-image {
       width: 100%;
-      height: 400px;
-      background: #f1f5f9;
-      border-radius: 20px;
       margin-bottom: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #94a3b8;
-      font-weight: 600;
+      border-radius: 20px;
+      overflow: hidden;
       border: 1px solid #e2e8f0;
+    }
+    
+    .project-image img {
+      width: 100%;
+      height: auto;
+      display: block;
     }
     body.dark .project-image {
       background: #1e293b;
@@ -120,7 +121,7 @@
 
 <main class="content">
   <div class="project-image">
-    <img src="was.png" alt="WAS Architecture" style="width:100%; height:100%; object-fit:cover; border-radius:20px;">
+    <img src="was.png" alt="WAS Architecture">
 </div>
   </div>
 
