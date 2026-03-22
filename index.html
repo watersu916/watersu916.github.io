@@ -23,10 +23,32 @@ margin-left:20px;text-decoration:none;color:#0f172a;font-weight:500;font-size:0.
 }
 body.dark nav a{color:#e5e7eb}
 
+/* HERO */
 .hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
-.hero h1{font-size:3rem;margin-bottom:20px}
+.hero h1{font-size:3rem;margin-bottom:20px;perspective:800px}
 .hero p{color:#64748b}
 body.dark .hero p{color:#94a3b8}
+
+/* 텍스트 애니메이션 */
+#hero-text span{
+display:inline-block;
+opacity:0;
+transform:translateY(20px) rotateX(90deg);
+transition:all 0.6s ease;
+transform-origin:bottom;
+}
+
+#hero-text span.show{
+opacity:1;
+transform:translateY(0) rotateX(0deg);
+}
+
+/* 강조 */
+.highlight{
+background:linear-gradient(90deg,#2563eb,#60a5fa);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
 
 .section{padding:140px 40px;max-width:1100px;margin:0 auto}
 .hidden{display:none}
@@ -112,7 +134,7 @@ body.dark .tag{background:#222;color:#ddd;border-color:#444}
 </header>
 
 <section class="hero">
-<h1>Cloud Infrastructure Engineer</h1>
+<h1 id="hero-text"></h1>
 <p>Designing scalable, automated, and secure systems</p>
 </section>
 
@@ -139,6 +161,7 @@ body.dark .tag{background:#222;color:#ddd;border-color:#444}
 <div class="timeline-item"><div class="timeline-date">2025.09 - 2025.11</div><div>(주)스팩스페이스 AI 학습용 영상 데이터 라벨링 아르바이트.</div></div>
 <div class="timeline-item"><div class="timeline-date">2023.06 - 2024.08</div><div>동국대학교 정보통신공학과 학생회 기획국원.</div></div>
 <div class="timeline-item"><div class="timeline-date">2023.07 - 2024.02</div><div>SPA브랜드 미쏘 신도림디큐브시티점 스탭.</div></div>
+<div class="timeline-item"><div class="timeline-date">2019.09 - 2021.12</div><div>감성커피 롯데캐슬3차점 아르바이트.</div></div>
 </div>
 </div>
 
@@ -149,6 +172,8 @@ body.dark .tag{background:#222;color:#ddd;border-color:#444}
 <h2>Projects</h2>
 
 <div class="projects">
+
+<!-- cards 그대로 유지 -->
 
 <div class="card">
 <h3>7-Node WAS Infrastructure</h3>
@@ -166,7 +191,7 @@ body.dark .tag{background:#222;color:#ddd;border-color:#444}
 <div class="card">
 <h3>AI Agent 기반 구인·구직 자동화 서비스 Ilowa</h3>
 <p class="desc">OCR/STT + LLM 기반 오프라인 일자리 정보 디지털화 플랫폼</p>
-<p class="role">Role: Frontend · Infra </p>
+<p class="role">Role: Frontend · Infra</p>
 <div class="tag-container">
 <span class="tag">FastAPI</span>
 <span class="tag">Docker</span>
@@ -206,6 +231,24 @@ body.dark .tag{background:#222;color:#ddd;border-color:#444}
 </section>
 
 <script>
+const text = "Cloud Infrastructure Engineer";
+const container = document.getElementById("hero-text");
+
+text.split("").forEach((char, i) => {
+  const span = document.createElement("span");
+  span.textContent = char === " " ? "\\u00A0" : char;
+
+  if ("Cloud".includes(char)) {
+    span.classList.add("highlight");
+  }
+
+  container.appendChild(span);
+
+  setTimeout(() => {
+    span.classList.add("show");
+  }, i * 70);
+});
+
 const aboutSection=document.querySelector('#about')
 
 window.addEventListener('scroll',()=>{
