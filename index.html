@@ -8,12 +8,19 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
+
 body{font-family:'Inter',sans-serif;background:#fff;color:#0f172a;transition:0.5s}
 body.dark{background:#000;color:#e5e7eb}
 
-header{position:fixed;top:0;width:100%;padding:18px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.9);border-bottom:1px solid #e2e8f0;z-index:100}
+header{
+position:fixed;top:0;width:100%;
+padding:18px 40px;display:flex;justify-content:space-between;align-items:center;
+background:rgba(255,255,255,0.9);border-bottom:1px solid #e2e8f0;z-index:100
+}
 
-nav a{margin-left:20px;text-decoration:none;color:#0f172a;font-weight:500;font-size:0.9rem;cursor:pointer}
+nav a{
+margin-left:20px;text-decoration:none;color:#0f172a;font-weight:500;font-size:0.9rem;cursor:pointer
+}
 body.dark nav a{color:#e5e7eb}
 
 .hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
@@ -24,7 +31,6 @@ body.dark .hero p{color:#94a3b8}
 .section{padding:140px 40px;max-width:1100px;margin:0 auto}
 .hidden{display:none}
 
-/* 강조 스타일 */
 .section h2{
 font-size:2.2rem;
 margin-bottom:60px;
@@ -40,7 +46,6 @@ width:100%;height:8px;
 background:linear-gradient(90deg,#2563eb,#60a5fa);
 border-radius:10px;
 opacity:0.6;
-transform:translateZ(10px);
 }
 
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:60px}
@@ -58,34 +63,40 @@ body.dark .timeline-date{color:#94a3b8}
 .card{
 background:#fff;
 border-radius:20px;
-padding:30px;
+padding:28px;
 border:1px solid #e2e8f0;
 transition:.3s;
-aspect-ratio:1/1;
 display:flex;
 flex-direction:column;
-justify-content:space-between;
+gap:10px;
 }
 
 body.dark .card{background:#111;border:1px solid #333}
 
 .card:hover{
-transform:translateY(-10px) scale(1.02);
-box-shadow:0 20px 40px rgba(0,0,0,0.25);
+transform:translateY(-8px);
+box-shadow:0 16px 32px rgba(0,0,0,0.2);
 }
 
-.card h3{margin-bottom:10px;font-size:1.2rem}
-.card p{color:#64748b;font-size:0.9rem;margin-bottom:10px}
-body.dark .card p{color:#94a3b8}
+.card h3{font-size:1.2rem;margin-bottom:4px}
 
-.tag-container{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+.card .desc{color:#64748b;font-size:0.9rem}
+body.dark .card .desc{color:#94a3b8}
+
+.card .role{
+font-size:0.85rem;
+font-weight:600;
+color:#2563eb;
+}
+body.dark .card .role{color:#60a5fa}
+
+.tag-container{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
 .tag{font-size:.75rem;background:#e2e8f0;padding:5px 9px;border-radius:8px;color:#1f2937;border:1px solid #cbd5e1}
 .tag:hover{background:#cbd5e1}
 body.dark .tag{background:#222;color:#ddd;border-color:#444}
 
 .card a{color:#2563eb;font-size:.85rem;text-decoration:none;margin-top:auto}
 
-footer{text-align:center;padding:40px;color:#94a3b8}
 </style>
 </head>
 
@@ -102,7 +113,7 @@ footer{text-align:center;padding:40px;color:#94a3b8}
 
 <section class="hero">
 <h1>Cloud Infrastructure Engineer</h1>
-<p>Designing secure and scalable infrastructure</p>
+<p>Designing scalable, automated, and secure systems</p>
 </section>
 
 <section id="about" class="section">
@@ -113,21 +124,19 @@ footer{text-align:center;padding:40px;color:#94a3b8}
 <div>
 <h3 style="margin-bottom:25px">Experiences</h3>
 <div class="timeline">
-<div class="timeline-item"><div class="timeline-date">2025.12 - 2026.04</div><div>Sesac 클라우드·데이터 엔지니어 과정 수료.</div></div>
-<div class="timeline-item"><div class="timeline-date">2025.09 - 2025.11</div><div>AI Challenge Season2 경진대회 우수상.</div></div>
-<div class="timeline-item"><div class="timeline-date">2025.06 - 2025.08</div><div>SKT FLY AI 7기 수료.</div></div>
-<div class="timeline-item"><div class="timeline-date">2025.06 - 2025.08</div><div>빅데이터 분석 학회 BDA 데이터 분석 입문반 수료.</div></div>
-<div class="timeline-item"><div class="timeline-date">2025.04 - 2025.06</div><div>미래 내일 일경험 : 제로 인턴 4기 수료.</div></div>
-<div class="timeline-item"><div class="timeline-date">2024.03 - 2024.06</div><div>IoT 가전 아이디어 경진대회 장려상.</div></div>
+<div class="timeline-item"><div class="timeline-date">2025.12 - 2026.04</div><div>Sesac 클라우드·데이터 엔지니어 과정 수료</div></div>
+<div class="timeline-item"><div class="timeline-date">2025.09 - 2025.11</div><div>AI Challenge Season2 참가</div></div>
+<div class="timeline-item"><div class="timeline-date">2025.06 - 2025.08</div><div>SKT FLY AI 수료</div></div>
+<div class="timeline-item"><div class="timeline-date">2025.04 - 2025.06</div><div>제로 인턴 4기 수료</div></div>
 </div>
 </div>
 
 <div>
 <h3 style="margin-bottom:25px">Activities</h3>
 <div class="timeline">
-<div class="timeline-item"><div class="timeline-date">2025.09 - 2025.11</div><div>(주)스팩스페이스 AI 학습용 영상 데이터 라벨링 아르바이트.</div></div>
-<div class="timeline-item"><div class="timeline-date">2023.06 - 2024.08</div><div>동국대학교 정보통신공학과 학생회 기획국원.</div></div>
-<div class="timeline-item"><div class="timeline-date">2023.07 - 2024.02</div><div>SPA 브랜드 MIXXO 신도림디큐브시티점 스탭 근무</div></div>
+<div class="timeline-item"><div class="timeline-date">2025.09 - 2025.11</div><div>스팩스페이스 데이터 라벨링</div></div>
+<div class="timeline-item"><div class="timeline-date">2023.06 - 2024.08</div><div>동국대 학생회 기획국</div></div>
+<div class="timeline-item"><div class="timeline-date">2023.07 - 2024.02</div><div>미쏘 스텝 근무</div></div>
 </div>
 </div>
 
@@ -139,111 +148,56 @@ footer{text-align:center;padding:40px;color:#94a3b8}
 
 <div class="projects">
 
-<!-- Project 1 -->
 <div class="card">
-  <h3>7-Node WAS Infrastructure</h3>
-
-  <p>
-    단일 서버 구조의 한계를 해결하기 위해 분산 웹 인프라를 설계 및 구축
-  </p>
-
-  <p style="font-size:0.85rem; color:#94a3b8;">
-    Role: Infra Design · Networking · Troubleshooting
-  </p>
-
-  <div class="tag-container">
-    <span class="tag">VirtualBox</span>
-    <span class="tag">HAProxy</span>
-    <span class="tag">MySQL</span>
-    <span class="tag">NFS</span>
-  </div>
-
-  <p style="font-size:0.8rem;">
-    NFS mount 오류 → SELinux 설정 문제 해결
-  </p>
-
-  <a href="project1_was.html">View Details →</a>
+<h3>7-Node WAS Infrastructure</h3>
+<p class="desc">단일 서버 구조의 한계를 해결하기 위해 분산 웹 인프라 설계</p>
+<p class="role">Role: Infra Design · Networking · Architecture</p>
+<div class="tag-container">
+<span class="tag">VirtualBox</span>
+<span class="tag">HAProxy</span>
+<span class="tag">MySQL</span>
+<span class="tag">NFS</span>
+</div>
+<a href="project1_was.html">View Details →</a>
 </div>
 
-
-<!-- Project 2 -->
 <div class="card">
-  <h3>AI Job Platform (ilowa)</h3>
-
-  <p>
-    OCR/STT + LLM 기반으로 오프라인 일자리 정보를 디지털화한 추천 플랫폼
-  </p>
-
-  <p style="font-size:0.85rem; color:#94a3b8;">
-    Role: Backend · Infra · AI Pipeline Integration
-  </p>
-
-  <div class="tag-container">
-    <span class="tag">FastAPI</span>
-    <span class="tag">Docker</span>
-    <span class="tag">PostgreSQL</span>
-    <span class="tag">LLM</span>
-  </div>
-
-  <p style="font-size:0.8rem;">
-    Docker 환경 불일치 → compose 기반 실행 환경 통일
-  </p>
-
-  <a href="project2_ilowa.html">View Details →</a>
+<h3>AI Job Platform (ilowa)</h3>
+<p class="desc">OCR/STT + LLM 기반 오프라인 일자리 정보 디지털화 플랫폼</p>
+<p class="role">Role: Backend · Infra · AI Pipeline</p>
+<div class="tag-container">
+<span class="tag">FastAPI</span>
+<span class="tag">Docker</span>
+<span class="tag">PostgreSQL</span>
+<span class="tag">LLM</span>
+</div>
+<a href="project2_ilowa.html">View Details →</a>
 </div>
 
-
-<!-- Project 3 -->
 <div class="card">
-  <h3>Kubernetes WordPress</h3>
-
-  <p>
-    VM 기반 구조를 Kubernetes로 확장하여 컨테이너 기반 서비스로 전환
-  </p>
-
-  <p style="font-size:0.85rem; color:#94a3b8;">
-    Role: K8s Architecture · YAML Design · Debugging
-  </p>
-
-  <div class="tag-container">
-    <span class="tag">Kubernetes</span>
-    <span class="tag">Ingress</span>
-    <span class="tag">PVC</span>
-    <span class="tag">ConfigMap</span>
-  </div>
-
-  <p style="font-size:0.8rem;">
-    PVC 바인딩 실패 → StorageClass/NFS 설정 문제 해결
-  </p>
-
-  <a href="project3_k8s.html">View Details →</a>
+<h3>Kubernetes WordPress</h3>
+<p class="desc">VM 기반 인프라를 Kubernetes 환경으로 확장한 컨테이너 플랫폼</p>
+<p class="role">Role: K8s Architecture · YAML Design · Debugging</p>
+<div class="tag-container">
+<span class="tag">Kubernetes</span>
+<span class="tag">Ingress</span>
+<span class="tag">PVC</span>
+<span class="tag">ConfigMap</span>
+</div>
+<a href="project3_k8s.html">View Details →</a>
 </div>
 
-
-<!-- Project 4 -->
 <div class="card">
-  <h3>Terraform & Ansible Automation</h3>
-
-  <p>
-    AWS 인프라를 코드로 구축하고 서버 설정까지 자동화한 IaC 프로젝트
-  </p>
-
-  <p style="font-size:0.85rem; color:#94a3b8;">
-    Role: Cloud Architecture · IaC · Automation
-  </p>
-
-  <div class="tag-container">
-    <span class="tag">Terraform</span>
-    <span class="tag">Ansible</span>
-    <span class="tag">AWS</span>
-    <span class="tag">VPC</span>
-  </div>
-
-  <p style="font-size:0.8rem;">
-    Private subnet 접근 문제 → NAT Gateway 및 라우팅 구성 해결
-  </p>
-
-  <a href="project4_tf&as.html">View Details →</a>
+<h3>Terraform & Ansible Automation</h3>
+<p class="desc">AWS 인프라 구축과 서버 설정을 자동화한 IaC 프로젝트</p>
+<p class="role">Role: Cloud Architecture · IaC · Automation</p>
+<div class="tag-container">
+<span class="tag">Terraform</span>
+<span class="tag">Ansible</span>
+<span class="tag">AWS</span>
+<span class="tag">VPC</span>
+</div>
+<a href="project4_tf&as.html">View Details →</a>
 </div>
 
 </div>
