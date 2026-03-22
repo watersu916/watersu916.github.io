@@ -92,16 +92,16 @@
 
     .project-image {
       width: 100%;
-      height: 400px;
-      background: #f1f5f9;
-      border-radius: 20px;
       margin-bottom: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #94a3b8;
-      font-weight: 600;
+      border-radius: 20px;
+      overflow: hidden;
       border: 1px solid #e2e8f0;
+    }
+    
+    .project-image img {
+      width: 100%;
+      height: auto;
+      display: block;
     }
 
     body.dark .project-image {
@@ -120,7 +120,9 @@
 
 <main class="content">
 
-  <div class="project-image">Terraform & Ansible Architecture</div>
+  <div class="project-image">
+    <img src="terraform.png" alt="terraform&ansible">
+  </div>
 
   <h1>Terraform & Ansible 기반 인프라 자동화</h1>
 
