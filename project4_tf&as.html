@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Project 4 | Terraform & Ansible</title>
-
+  <title>Terraform & Ansible - Detail</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
@@ -14,219 +13,195 @@
       font-family: 'Inter', sans-serif;
       background: #ffffff;
       color: #0f172a;
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 100px 20px 60px;
-    }
-
-    h1 {
-      font-size: 38px;
-      margin-bottom: 10px;
-    }
-
-    .subtitle {
-      color: #475569;
-      margin-bottom: 25px;
-    }
-
-    .tags {
-      margin-bottom: 40px;
-    }
-
-    .tag {
-      display: inline-block;
-      background: #f1f5f9;
-      color: #334155;
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 13px;
-      margin-right: 6px;
-      margin-bottom: 6px;
-    }
-
-    section {
-      margin-bottom: 50px;
-    }
-
-    h2 {
-      font-size: 22px;
-      margin-bottom: 15px;
-    }
-
-    .card {
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 10px;
-      padding: 20px;
-    }
-
-    ul {
-      padding-left: 18px;
-    }
-
-    li {
-      margin-bottom: 8px;
-      color: #334155;
-    }
-
-    .flow {
-      background: #0f172a;
-      color: #e5e7eb;
-      padding: 20px;
-      border-radius: 10px;
-      font-size: 14px;
+      transition: background 0.5s, color 0.5s;
       line-height: 1.6;
     }
 
-    .highlight {
+    body.dark { background: #0f172a; color: #e5e7eb; }
+
+    header {
+      padding: 40px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .back-btn {
+      text-decoration: none;
+      color: #2563eb;
       font-weight: 600;
-      color: #111827;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 30px;
+      transition: transform 0.2s;
+    }
+
+    .back-btn:hover { transform: translateX(-5px); }
+
+    .content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 40px 100px;
+    }
+
+    h1 { font-size: 2.5rem; margin-bottom: 20px; }
+
+    .tag-container {
+      display: flex; gap: 10px; margin-bottom: 40px; flex-wrap: wrap;
+    }
+
+    .tag {
+      padding: 6px 14px;
+      background: #e2e8f0;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      color: #1f2937;
+      border: 1px solid #cbd5e1;
+    }
+
+    .tag:hover { background: #cbd5e1; }
+
+    body.dark .tag { background: #334155; color: #cbd5e1; }
+
+    section { margin-bottom: 50px; }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      border-left: 4px solid #2563eb;
+      padding-left: 15px;
+    }
+
+    p { color: #475569; margin-bottom: 15px; }
+    body.dark p { color: #94a3b8; }
+
+    ul { list-style: none; padding-left: 0; }
+
+    li {
+      margin-bottom: 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    li::before {
+      content: '✓';
+      color: #2563eb;
+      font-weight: bold;
+    }
+
+    .project-image {
+      width: 100%;
+      height: 400px;
+      background: #f1f5f9;
+      border-radius: 20px;
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #94a3b8;
+      font-weight: 600;
+      border: 1px solid #e2e8f0;
+    }
+
+    body.dark .project-image {
+      background: #1e293b;
+      border-color: #334155;
     }
 
   </style>
 </head>
 
 <body>
-  <div class="container">
 
-    <!-- 제목 -->
-    <h1>Terraform & Ansible 기반 인프라 자동화</h1>
-    <p class="subtitle">
-      Public/Private Subnet 기반 AWS 인프라를 코드로 구축하고 서버 구성까지 자동화한 프로젝트
-    </p>
+<header>
+  <a href="index.html" class="back-btn">← Back to Portfolio</a>
+</header>
 
-    <!-- 태그 -->
-    <div class="tags">
-      <span class="tag">Terraform</span>
-      <span class="tag">Ansible</span>
-      <span class="tag">AWS</span>
-      <span class="tag">VPC</span>
-      <span class="tag">IaC</span>
-      <span class="tag">High Availability</span>
-    </div>
+<main class="content">
 
-    <!-- 개요 -->
-    <section>
-      <h2>📌 Overview</h2>
-      <div class="card">
-        <p>
-          Terraform을 사용하여 AWS 네트워크 및 인프라를 자동으로 구축하고, 
-          Ansible을 통해 EC2 인스턴스의 초기 설정과 서비스 환경을 구성했습니다.
-        </p>
-        <p>
-          단순 리소스 생성이 아닌 <span class="highlight">네트워크 분리, 보안 구조, 운영 자동화</span>까지 포함한 인프라 설계를 목표로 했습니다.
-        </p>
-      </div>
-    </section>
+  <div class="project-image">Terraform & Ansible Architecture</div>
 
-    <!-- 아키텍처 -->
-    <section>
-      <h2>🏗 Architecture</h2>
-      <div class="card">
-        <ul>
-          <li>VPC 내 Public / Private Subnet 분리</li>
-          <li>Internet Gateway + NAT Gateway 구성</li>
-          <li>Private Subnet에 EC2 배치</li>
-          <li>Multi-AZ 기반 고가용성 확보</li>
-        </ul>
-      </div>
-    </section>
+  <h1>Terraform & Ansible 기반 인프라 자동화</h1>
 
-    <!-- 네트워크 -->
-    <section>
-      <h2>🌐 Network</h2>
-      <div class="card">
-        <ul>
-          <li><span class="highlight">VPC</span> : 10.0.0.0/16</li>
-          <li><span class="highlight">Public Subnet</span> : 10.0.1.0/24 (2a), 10.0.2.0/24 (2b)</li>
-          <li><span class="highlight">Private Subnet</span> : 10.0.11.0/24 (2a), 10.0.12.0/24 (2b)</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- 라우팅 -->
-    <section>
-      <h2>🧭 Routing</h2>
-      <div class="card">
-        <ul>
-          <li>Public Route → Internet Gateway</li>
-          <li>Private Route → NAT Gateway</li>
-          <li>Private Instance 외부 직접 접근 차단</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- 인스턴스 -->
-    <section>
-      <h2>💻 Compute</h2>
-      <div class="card">
-        <ul>
-          <li>Instance A → Private Subnet (AZ-2a)</li>
-          <li>Instance B → Private Subnet (AZ-2b)</li>
-          <li>AZ 분산으로 장애 대응 가능</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- 자동화 -->
-    <section>
-      <h2>⚙️ Automation Flow</h2>
-      <div class="flow">
-[Terraform]
-→ VPC
-→ Subnet
-→ IGW / NAT Gateway
-→ Route Table
-→ EC2
-
-↓
-
-[Ansible]
-→ 서버 접속
-→ 패키지 설치
-→ 환경 설정
-→ 서비스 구성
-      </div>
-    </section>
-
-    <!-- 핵심 포인트 -->
-    <section>
-      <h2>💡 Key Points</h2>
-      <div class="card">
-        <ul>
-          <li>Infrastructure as Code 기반 인프라 자동화</li>
-          <li>Public / Private 네트워크 분리</li>
-          <li>Multi-AZ 기반 고가용성</li>
-          <li>Terraform + Ansible 역할 분리</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- 결과 -->
-    <section>
-      <h2>📈 Result</h2>
-      <div class="card">
-        <ul>
-          <li>인프라 구축 자동화 경험 확보</li>
-          <li>클라우드 네트워크 설계 이해도 향상</li>
-          <li>운영 환경을 고려한 구조 설계 경험</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- 한줄 -->
-    <section>
-      <h2>🔥 Summary</h2>
-      <div class="card">
-        <p>
-          Terraform과 Ansible을 활용하여 <span class="highlight">고가용성 클라우드 인프라를 자동 구축하고 서버 구성까지 일관되게 관리</span>한 프로젝트입니다.
-        </p>
-      </div>
-    </section>
-
+  <div class="tag-container">
+    <span class="tag">Terraform</span>
+    <span class="tag">Ansible</span>
+    <span class="tag">AWS</span>
+    <span class="tag">VPC</span>
+    <span class="tag">IaC</span>
+    <span class="tag">High Availability</span>
   </div>
+
+  <section>
+    <h2>Overview</h2>
+    <p>
+      Terraform을 활용해 AWS 인프라를 코드로 구축하고, Ansible을 통해 서버 초기 설정과 서비스 환경을 자동화한 프로젝트입니다.
+      네트워크 구조 설계부터 서버 구성까지 일관된 자동화 환경을 구축하는 것을 목표로 했습니다.
+    </p>
+  </section>
+
+  <section>
+    <h2>Architecture</h2>
+    <ul>
+      <li>VPC 기반 Public / Private Subnet 분리</li>
+      <li>Internet Gateway + NAT Gateway 구성</li>
+      <li>Private Subnet에 EC2 배치</li>
+      <li>Multi-AZ 기반 고가용성 확보</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Network</h2>
+    <ul>
+      <li>VPC: 10.0.0.0/16</li>
+      <li>Public Subnet: 10.0.1.0/24, 10.0.2.0/24</li>
+      <li>Private Subnet: 10.0.11.0/24, 10.0.12.0/24</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Routing</h2>
+    <ul>
+      <li>Public → Internet Gateway 연결</li>
+      <li>Private → NAT Gateway 통해 외부 통신</li>
+      <li>외부 직접 접근 차단 구조</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Automation Flow</h2>
+    <ul>
+      <li>Terraform으로 인프라 리소스 생성</li>
+      <li>Ansible로 서버 설정 및 서비스 구성 자동화</li>
+      <li>인프라 + 애플리케이션 환경 통합 관리</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Key Implementation</h2>
+    <ul>
+      <li>Infrastructure as Code 기반 인프라 자동화</li>
+      <li>Public/Private 네트워크 분리 설계</li>
+      <li>Terraform + Ansible 역할 분리</li>
+      <li>고가용성 아키텍처 구성</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Impact</h2>
+    <p>
+      수동 구축이 아닌 코드 기반 인프라 관리 경험을 통해 클라우드 환경에서의 운영 자동화와 확장성 있는 구조 설계 역량을 확보했습니다.
+    </p>
+  </section>
+
+</main>
+
+<script>
+  if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark');
+  }
+</script>
+
 </body>
 </html>
