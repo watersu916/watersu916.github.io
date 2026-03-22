@@ -236,7 +236,7 @@ const container = document.getElementById("hero-text");
 
 text.split("").forEach((char, i) => {
   const span = document.createElement("span");
-  span.textContent = char === " " ? "\\u00A0" : char;
+  span.textContent = char === " " ? "\u00A0" : char;
 
   if ("Cloud".includes(char)) {
     span.classList.add("highlight");
