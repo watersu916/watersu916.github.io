@@ -1,432 +1,196 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>watersu @ terminal</title>
-    <meta name="description" content="Terminal-inspired portfolio for watersu.">
-    <!-- Google Fonts: Space Mono for that terminal look -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-        rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #1a1a1d;
-            --text-color: #e2e2e2;
-            --primary-color: #facc15;
-            /* Terminal Yellow */
-            --secondary-color: #525252;
-            --accent-glow: rgba(250, 204, 21, 0.15);
-            --font-main: 'Space Mono', monospace;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+      overflow-x: hidden;
+    }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: var(--font-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-            padding: 2rem;
-        }
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      z-index: 100;
+    }
 
-        /* --- Scanline Effect --- */
-        body::before {
-            content: " ";
-            display: block;
-            position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
-            z-index: 9999;
-            background-size: 100% 4px;
-            pointer-events: none;
-        }
+    header nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #cbd5f5;
+      font-weight: 500;
+      transition: 0.3s;
+    }
 
-        /* --- Navigation --- */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 1rem;
-            margin-bottom: 4rem;
-        }
+    header nav a:hover {
+      color: #fff;
+    }
 
-        .logo {
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            text-decoration: none;
-        }
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+    }
 
-        .logo::before {
-            content: "$ ";
-            color: var(--secondary-color);
-        }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-color);
-            margin-left: 2rem;
-            font-weight: 700;
-            transition: 0.2s;
-        }
+    .hero p {
+      font-size: 1.2rem;
+      color: #94a3b8;
+      max-width: 600px;
+    }
 
-        .nav-links a:hover {
-            background: var(--primary-color);
-            color: var(--bg-color);
-        }
+    .projects {
+      padding: 100px 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
 
-        /* --- Hero Section --- */
-        .hero {
-            padding: 4rem 0;
-            max-width: 900px;
-        }
+    .card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
+      padding: 25px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      transform-style: preserve-3d;
+    }
 
-        .prompt {
-            color: var(--primary-color);
-            margin-right: 10px;
-        }
+    .card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
 
-        .hero-title {
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            margin-bottom: 1.5rem;
-            color: var(--primary-color);
-            display: flex;
-            gap: 0.2rem;
-            flex-wrap: wrap;
-        }
+    .card h3 {
+      margin-bottom: 10px;
+    }
 
-        .char {
-            display: inline-block;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            user-select: none;
-        }
+    .card p {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      margin-bottom: 15px;
+    }
 
-        .char:hover {
-            transform: translateY(-8px);
-            color: white;
-        }
+    .tags {
+      margin-bottom: 15px;
+    }
 
-        .char.active {
-            color: var(--bg-color);
-            background-color: var(--primary-color);
-            transform: scale(1.15) rotate(5deg);
-            padding: 0 4px;
-            border-radius: 4px;
-            box-shadow: 0 0 15px var(--accent-glow);
-        }
+    .tags span {
+      font-size: 0.7rem;
+      background: #1e293b;
+      padding: 5px 8px;
+      border-radius: 8px;
+      margin-right: 5px;
+    }
 
-        .hero-desc {
-            font-size: 1.2rem;
-            color: var(--text-color);
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
+    .card a {
+      text-decoration: none;
+      color: #60a5fa;
+      font-size: 0.85rem;
+    }
 
-        .hero-desc::after {
-            content: "|";
-            animation: blink 1s infinite;
-            color: var(--primary-color);
-        }
+    footer {
+      text-align: center;
+      padding: 40px;
+      color: #64748b;
+      font-size: 0.8rem;
+    }
 
-        /* --- Sections & Cards --- */
-        .section-title {
-            color: var(--primary-color);
-            font-size: 2rem;
-            margin: 4rem 0 2rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .section-title::before {
-            content: "> ";
-            margin-right: 10px;
-        }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            border: 2px solid var(--secondary-color);
-            padding: 2rem;
-            transition: 0.3s;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .project-card:hover {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 20px var(--accent-glow);
-            transform: scale(1.02);
-        }
-
-        .project-card h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .project-card p {
-            font-size: 0.95rem;
-            color: #ccc;
-            margin-bottom: 1.5rem;
-        }
-
-        .btn-detail {
-            color: var(--primary-color);
-            text-decoration: underline;
-            font-weight: 700;
-        }
-
-        /* --- Footer --- */
-        footer {
-            margin-top: 8rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--secondary-color);
-            font-size: 0.8rem;
-            color: var(--secondary-color);
-            text-align: center;
-        }
-
-        /* --- Interactive Elements --- */
-        [contenteditable="true"]:focus {
-            outline: 2px dashed var(--primary-color);
-            padding: 5px;
-        }
-
-        /* --- Modal --- */
-        #project-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 10000;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
-        }
-
-        .modal-content {
-            border: 3px solid var(--primary-color);
-            background: var(--bg-color);
-            width: 100%;
-            max-width: 800px;
-            padding: 3rem;
-            position: relative;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            color: var(--primary-color);
-            cursor: pointer;
-            font-weight: 700;
-        }
-
-        /* --- Animations --- */
-        @keyframes blink {
-            50% {
-                opacity: 0;
-            }
-        }
-
-        .cyber-toggle {
-            position: absolute;
-            top: 2rem;
-            right: 0;
-            padding: 0.8rem 2rem;
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(5px);
-            z-index: 10;
-        }
-
-        .cyber-toggle::before {
-            content: "SYNK_INIT // ";
-            opacity: 0.5;
-            font-size: 0.7rem;
-        }
-
-        .cyber-toggle:hover {
-            background-color: var(--primary-color);
-            color: var(--bg-color);
-            box-shadow: 0 0 30px var(--accent-glow);
-            transform: scale(1.05);
-        }
-
-        @media (max-width: 1024px) {
-            .cyber-toggle {
-                position: static;
-                margin-top: 2rem;
-                display: inline-block;
-            }
-        }
-
-        @media (max-width: 768px) {
-            body {
-                padding: 1rem;
-            }
-
-            nav {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-
-            .nav-links a {
-                margin-left: 0;
-                margin-right: 1.5rem;
-            }
-        }
-    </style>
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2rem; }
+    }
+  </style>
 </head>
-
 <body>
-    <nav>
-        <a href="#" class="logo">watersu</a>
-        <div class="nav-links">
-            <a href="#work">./work</a>
-            <a href="#about">./about</a>
-            <a href="mailto:watersu@example.com">./contact</a>
-        </div>
-    </nav>
 
-    <main>
-        <section class="hero" style="position: relative;">
-            <a href="aespa.html" class="cyber-toggle">[SYNK_OUT]</a>
-            <div style="margin-bottom: 10px; color: var(--secondary-color);">Last login: <span id="current-date"></span>
-                on tty01</div>
-            <h1 class="hero-title" id="hero-greeting" style="justify-content: center;"></h1>
-            <p class="hero-desc" contenteditable="true">
-                터미널 테마를 좋아하시는군요! 저는 고전적인 감성과 현대적인 기술력을 결합하는 프론트엔드 개발자입니다.
-                모든 텍스트는 명령어를 입력하듯 이곳에서 직접 수정할 수 있습니다.
-            </p>
-            <div style="margin-top: 2rem;">
-                <span class="prompt">$</span><span style="color: var(--secondary-color);">await</span>
-                Watersu.getSkills();
-            </div>
-        </section>
+<header>
+  <div>Portfolio</div>
+  <nav>
+    <a href="#projects">Projects</a>
+    <a href="#">GitHub</a>
+  </nav>
+</header>
 
-        <section id="work">
-            <h2 class="section-title">projects</h2>
-            <div class="project-grid">
-                <div class="project-card"
-                    onclick="openProject('Terminal Portfolio', '이 테마는 Hugo Terminal 테마에서 영감을 얻었습니다. 흑백의 미니멀리즘과 노란색의 강렬한 하이라이트를 특징으로 하며, 모든 요소가 터미널 인터페이스처럼 작동하도록 설계되었습니다.')">
-                    <h3 contenteditable="true">Terminal Portfolio</h3>
-                    <p contenteditable="true">현재 보고 계신 바로 이 페이지입니다. 미니멀하고 직관적인 개발자 감성을 담았습니다.</p>
-                    <div class="btn-detail">[view_detail]</div>
-                </div>
-                <div class="project-card"
-                    onclick="openProject('Matrix Visualizer', '복잡한 데이터 구조를 매트릭스 코드 흐름처럼 시각화하는 도구입니다. 대량의 데이터를 효율적으로 렌더링하기 위해 Canvas API를 극한으로 활용했습니다.')">
-                    <h3 contenteditable="true">Matrix Visualizer</h3>
-                    <p contenteditable="true">데이터의 흐름을 고전적인 사이버네틱 스타일로 시각화한 프로젝트입니다.</p>
-                    <div class="btn-detail">[view_detail]</div>
-                </div>
-            </div>
-        </section>
+<section class="hero">
+  <h1>Secure & Scalable Cloud Infrastructure Engineer</h1>
+  <p>
+    Zero Trust 기반의 보안 아키텍처와 자동화된 클라우드 인프라를 설계하고 구축합니다.
+  </p>
+</section>
 
-        <section id="about">
-            <h2 class="section-title">whoami</h2>
-            <div contenteditable="true"
-                style="color: var(--text-color); font-size: 1.1rem; border-left: 4px solid var(--secondary-color); padding-left: 2rem;">
-                <p>저는 코드를 통해 문제를 해결하는 과정을 즐깁니다. 터미널의 단순함 속에서 무한한 가능성을 찾는 것처럼, 복잡한 사용자 요구사항을 명료하고 우아한 인터페이스로 풀어내는 것이 제
-                    전문입니다.</p>
-                <p style="margin-top: 1rem;">주요 기술 스택: React.js, TypeScript, Next.js, Node.js...</p>
-            </div>
-        </section>
-    </main>
+<section id="projects" class="projects">
 
-    <div id="project-modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">[x_close]</span>
-            <div id="modal-title" style="color: var(--primary-color); font-size: 2rem; margin-bottom: 1.5rem;"></div>
-            <div id="modal-desc" contenteditable="true" style="margin-bottom: 2rem;"></div>
-            <div style="color: var(--secondary-color); font-size: 0.9rem;">
-                // Edit this description directly in the terminal view.
-            </div>
-        </div>
+  <div class="card">
+    <h3>Zero Trust Platform</h3>
+    <p>RBAC 기반 접근 제어와 Vault를 활용한 시크릿 관리</p>
+    <div class="tags">
+      <span>Kubernetes</span>
+      <span>Vault</span>
+      <span>EKS</span>
     </div>
+    <a href="#">View Details →</a>
+  </div>
 
-    <footer>
-        <p>watersu@github &copy; 2026. Built with raw passion and 'Space Mono'.</p>
-    </footer>
+  <div class="card">
+    <h3>DevSecOps Pipeline</h3>
+    <p>CI/CD와 보안 정책 검증이 결합된 배포 환경</p>
+    <div class="tags">
+      <span>ArgoCD</span>
+      <span>Terraform</span>
+      <span>Trivy</span>
+    </div>
+    <a href="#">View Details →</a>
+  </div>
 
-    <script>
-        // Update date
-        document.getElementById('current-date').textContent = new Date().toDateString();
+</section>
 
-        // Modal Logic
-        const modal = document.getElementById('project-modal');
-        function openProject(title, desc) {
-            document.getElementById('modal-title').textContent = title;
-            document.getElementById('modal-desc').textContent = desc;
-            modal.style.display = 'flex';
-        }
-        function closeModal() {
-            modal.style.display = 'none';
-        }
+<footer>
+  © 2026 Portfolio
+</footer>
 
-        window.onclick = function (event) {
-            if (event.target == modal) closeModal();
-        }
+<script>
+  const cards = document.querySelectorAll('.card');
 
-        // Interactive Hero Text
-        const greetingContainer = document.getElementById('hero-greeting');
-        const greetingText = "Hello, watersu";
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
 
-        function initGreeting() {
-            greetingText.split('').forEach((char, i) => {
-                const span = document.createElement('span');
-                span.textContent = char === ' ' ? '\u00A0' : char;
-                span.classList.add('char');
-                span.style.transitionDelay = `${i * 30}ms`;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
 
-                span.onclick = () => {
-                    span.classList.toggle('active');
-                    // Random pop direction
-                    const rotate = (Math.random() - 0.5) * 20;
-                    if (span.classList.contains('active')) {
-                        span.style.transform = `scale(1.2) rotate(${rotate}deg) translateY(-5px)`;
-                    } else {
-                        span.style.transform = '';
-                    }
-                };
+      const rotateX = -(y - centerY) / 10;
+      const rotateY = (x - centerX) / 10;
 
-                greetingContainer.appendChild(span);
-            });
-        }
+      card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+    });
 
-        initGreeting();
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'rotateX(0) rotateY(0) scale(1)';
+    });
+  });
+</script>
 
-        // Typing effect logic could be added here for more 'terminal' feel
-    </script>
 </body>
-
 </html>
