@@ -11,8 +11,8 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background: radial-gradient(circle at top, #1e293b, #0f172a);
-      color: #e5e7eb;
+      background: #f8fafc;
+      color: #0f172a;
       overflow-x: hidden;
     }
 
@@ -20,30 +20,30 @@
       position: fixed;
       top: 0;
       width: 100%;
-      padding: 20px 40px;
+      padding: 18px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      backdrop-filter: blur(12px);
-      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,0.8);
+      border-bottom: 1px solid #e2e8f0;
       z-index: 100;
     }
 
     header div {
       font-weight: 600;
-      letter-spacing: 0.5px;
     }
 
     header nav a {
       margin-left: 25px;
       text-decoration: none;
-      color: #cbd5f5;
+      color: #475569;
       font-weight: 500;
-      transition: 0.25s ease;
+      transition: 0.2s ease;
     }
 
     header nav a:hover {
-      color: #60a5fa;
+      color: #2563eb;
     }
 
     .hero {
@@ -60,14 +60,11 @@
       font-size: 3rem;
       font-weight: 700;
       margin-bottom: 20px;
-      background: linear-gradient(90deg, #ffffff, #60a5fa);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
     }
 
     .hero p {
       font-size: 1.1rem;
-      color: #94a3b8;
+      color: #64748b;
       max-width: 650px;
       line-height: 1.6;
     }
@@ -80,30 +77,27 @@
     }
 
     @media (max-width: 768px) {
-      .projects {
-        grid-template-columns: 1fr;
-      }
+      .projects { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2.2rem; }
     }
 
     .card {
-      background: rgba(255,255,255,0.04);
-      border-radius: 20px;
+      background: #ffffff;
+      border-radius: 18px;
       padding: 25px;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      transform-style: preserve-3d;
-      border: 1px solid rgba(0,65,129,0.25);
-      backdrop-filter: blur(10px);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border: 1px solid #e2e8f0;
     }
 
     .card:hover {
-      box-shadow: 0 25px 50px rgba(0, 65, 129, 0.3);
+      transform: translateY(-6px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.08);
     }
 
     .card img {
       width: 100%;
       border-radius: 12px;
       margin-bottom: 15px;
-      opacity: 0.9;
     }
 
     .card h3 {
@@ -113,7 +107,7 @@
 
     .card p {
       font-size: 0.9rem;
-      color: #94a3b8;
+      color: #64748b;
       margin-bottom: 15px;
       line-height: 1.5;
     }
@@ -124,22 +118,21 @@
 
     .tags span {
       font-size: 0.7rem;
-      background: rgba(0,65,129,0.3);
+      background: #f1f5f9;
       padding: 5px 8px;
       border-radius: 8px;
       margin-right: 5px;
+      color: #334155;
     }
 
     .card a {
       text-decoration: none;
-      color: #60a5fa;
+      color: #2563eb;
       font-size: 0.85rem;
       font-weight: 500;
     }
 
-    .card a:hover {
-      text-decoration: underline;
-    }
+    .card a:hover { text-decoration: underline; }
 
     .about {
       padding: 100px 40px;
@@ -155,12 +148,10 @@
       height: 180px;
       border-radius: 50%;
       object-fit: cover;
-      border: 2px solid rgba(0,65,129,0.5);
+      border: 2px solid #e2e8f0;
     }
 
-    .about-content {
-      max-width: 600px;
-    }
+    .about-content { max-width: 600px; }
 
     .about-content h2 {
       font-size: 1.8rem;
@@ -170,20 +161,16 @@
     .timeline {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      color: #94a3b8;
+      gap: 10px;
+      color: #64748b;
       font-size: 0.9rem;
     }
 
     footer {
       text-align: center;
       padding: 40px;
-      color: #64748b;
+      color: #94a3b8;
       font-size: 0.8rem;
-    }
-
-    @media (max-width: 768px) {
-      .hero h1 { font-size: 2.2rem; }
     }
   </style>
 </head>
@@ -198,18 +185,18 @@
 </header>
 
 <section class="hero">
-  <h1>Building Secure & Scalable Cloud Infrastructure</h1>
+  <h1>Cloud Infrastructure Engineer</h1>
   <p>
-    Zero Trust 기반의 접근 제어와 자동화된 DevSecOps 환경을 설계하고 구축합니다.
+    Security, Automation, and Scalability를 중심으로 클라우드 인프라를 설계하고 구축합니다.
   </p>
 </section>
 
 <section id="projects" class="projects">
 
   <div class="card">
-    <img src="architecture1.png" alt="project">
+    <img src="architecture1.png">
     <h3>Zero Trust Platform</h3>
-    <p>RBAC 기반 접근 제어와 Vault를 활용한 시크릿 관리 플랫폼</p>
+    <p>RBAC 기반 접근 제어와 Vault 기반 시크릿 관리</p>
     <div class="tags">
       <span>Kubernetes</span>
       <span>Vault</span>
@@ -219,9 +206,9 @@
   </div>
 
   <div class="card">
-    <img src="architecture2.png" alt="project">
+    <img src="architecture2.png">
     <h3>DevSecOps Pipeline</h3>
-    <p>CI/CD와 보안 정책 검증이 결합된 자동화 배포 환경</p>
+    <p>보안 정책 검증이 포함된 CI/CD 자동화 환경</p>
     <div class="tags">
       <span>ArgoCD</span>
       <span>Terraform</span>
@@ -231,9 +218,9 @@
   </div>
 
   <div class="card">
-    <img src="architecture3.png" alt="project">
+    <img src="architecture3.png">
     <h3>K8s Auto Scaling</h3>
-    <p>대량 트래픽 대응을 위한 HPA 기반 오토스케일링 구성</p>
+    <p>대량 트래픽 대응을 위한 오토스케일링 구성</p>
     <div class="tags">
       <span>Kubernetes</span>
       <span>HPA</span>
@@ -243,9 +230,9 @@
   </div>
 
   <div class="card">
-    <img src="architecture4.png" alt="project">
+    <img src="architecture4.png">
     <h3>Monitoring System</h3>
-    <p>Prometheus, Grafana 기반의 실시간 모니터링 환경 구축</p>
+    <p>Prometheus, Grafana 기반 모니터링 환경 구축</p>
     <div class="tags">
       <span>Prometheus</span>
       <span>Grafana</span>
@@ -257,14 +244,14 @@
 </section>
 
 <section class="about">
-  <img src="profile.jpg" alt="profile" class="profile-img">
+  <img src="profile.jpg" class="profile-img">
   <div class="about-content">
-    <h2>About Me</h2>
+    <h2>Experience</h2>
     <div class="timeline">
-      <div>2023 - 클라우드/인프라 학습 시작</div>
-      <div>2024 - Kubernetes, Docker 기반 프로젝트 수행</div>
-      <div>2025 - DevSecOps 및 Zero Trust 아키텍처 구축 경험</div>
-      <div>2026 - 클라우드 인프라 엔지니어 취업 준비</div>
+      <div>2023 - Cloud & Infrastructure Learning Started</div>
+      <div>2024 - Kubernetes & Container Projects</div>
+      <div>2025 - DevSecOps & Zero Trust Architecture</div>
+      <div>2026 - Preparing for Cloud Infrastructure Engineer</div>
     </div>
   </div>
 </section>
@@ -273,30 +260,5 @@
   © 2026 Cloud Infrastructure Portfolio
 </footer>
 
-<script>
-  const cards = document.querySelectorAll('.card');
-
-  cards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-
-      const rotateX = -(y - centerY) / 12;
-      const rotateY = (x - centerX) / 12;
-
-      card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
-    });
-
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = 'rotateX(0) rotateY(0) scale(1)';
-    });
-  });
-</script>
-
 </body>
 </html>
-
