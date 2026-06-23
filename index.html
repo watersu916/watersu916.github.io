@@ -5,108 +5,264 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Cloud Infrastructure Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:'Inter',sans-serif;background:#fff;color:#0f172a;transition:0.5s}
-  body.dark{background:#000;color:#e5e7eb}
-  header{position:fixed;top:0;width:100%;padding:18px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.9);border-bottom:1px solid #e2e8f0;z-index:100}
-  nav a{margin-left:20px;text-decoration:none;color:#0f172a;font-weight:500;font-size:0.9rem;cursor:pointer}
-  .hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
-  .section{padding:140px 40px;max-width:1100px;margin:0 auto}
-  .hidden{display:none}
-  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:60px}
-  .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:50px}
-  @media(max-width:768px){.grid-2, .projects{grid-template-columns:1fr}}
-  .card{background:#fff;border-radius:20px;padding:28px;border:1px solid #e2e8f0;transition:.3s;display:flex;flex-direction:column;gap:10px}
-  body.dark .card{background:#111;border:1px solid #333}
-  .card:hover{transform:translateY(-8px);box-shadow:0 16px 32px rgba(0,0,0,0.2)}
-  .tag{font-size:.75rem;background:#e2e8f0;padding:5px 9px;border-radius:8px;color:#1f2937;border:1px solid #cbd5e1}
-  .card a{color:#2563eb;font-size:.85rem;text-decoration:none;margin-top:auto}
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{font-family:'Inter',sans-serif;background:#fff;color:#0f172a;transition:0.5s}
+body.dark{background:#000;color:#e5e7eb}
+
+header{
+position:fixed;top:0;width:100%;
+padding:18px 40px;display:flex;justify-content:space-between;align-items:center;
+background:rgba(255,255,255,0.9);border-bottom:1px solid #e2e8f0;z-index:100
+}
+
+nav a{
+margin-left:20px;text-decoration:none;color:#0f172a;font-weight:500;font-size:0.9rem;cursor:pointer
+}
+body.dark nav a{color:#e5e7eb}
+
+/* HERO */
+.hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.hero h1{font-size:3rem;margin-bottom:20px;perspective:800px}
+.hero p{color:#64748b}
+body.dark .hero p{color:#94a3b8}
+
+/* 텍스트 애니메이션 */
+#hero-text span{
+display:inline-block;
+opacity:0;
+transform:translateY(20px) rotateX(90deg);
+transition:all 0.6s ease;
+transform-origin:bottom;
+}
+
+#hero-text span.show{
+opacity:1;
+transform:translateY(0) rotateX(0deg);
+}
+
+/* 강조 */
+.highlight{
+background:linear-gradient(90deg,#2563eb,#60a5fa);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.section{padding:140px 40px;max-width:1100px;margin:0 auto}
+.hidden{display:none}
+
+.section h2{
+font-size:2.2rem;
+margin-bottom:60px;
+position:relative;
+display:inline-block;
+}
+
+.section h2::after{
+content:'';
+position:absolute;
+left:0;bottom:-10px;
+width:100%;height:8px;
+background:linear-gradient(90deg,#2563eb,#60a5fa);
+border-radius:10px;
+opacity:0.6;
+}
+
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:60px}
+@media(max-width:768px){.grid-2{grid-template-columns:1fr}}
+
+.timeline{border-left:2px solid #2563eb;padding-left:20px;display:flex;flex-direction:column;gap:25px}
+.timeline-item{position:relative}
+.timeline-item::before{content:'';position:absolute;left:-29px;top:5px;width:10px;height:10px;background:#2563eb;border-radius:50%}
+.timeline-date{font-size:0.8rem;color:#64748b;margin-bottom:5px}
+body.dark .timeline-date{color:#94a3b8}
+
+.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:50px}
+@media(max-width:768px){.projects{grid-template-columns:1fr}}
+
+.card{
+background:#fff;
+border-radius:20px;
+padding:28px;
+border:1px solid #e2e8f0;
+transition:.3s;
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+body.dark .card{background:#111;border:1px solid #333}
+
+.card:hover{
+transform:translateY(-8px);
+box-shadow:0 16px 32px rgba(0,0,0,0.2);
+}
+
+.card h3{font-size:1.2rem;margin-bottom:4px}
+
+.card .desc{color:#64748b;font-size:0.9rem}
+body.dark .card .desc{color:#94a3b8}
+
+.card .role{
+font-size:0.85rem;
+font-weight:600;
+color:#2563eb;
+}
+body.dark .card .role{color:#60a5fa}
+
+.tag-container{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.tag{font-size:.75rem;background:#e2e8f0;padding:5px 9px;border-radius:8px;color:#1f2937;border:1px solid #cbd5e1}
+.tag:hover{background:#cbd5e1}
+body.dark .tag{background:#222;color:#ddd;border-color:#444}
+
+.card a{color:#2563eb;font-size:.85rem;text-decoration:none;margin-top:auto}
+
 </style>
 </head>
+
 <body>
 
 <header>
-  <div>안수연</div>
-  <nav>
-    <a onclick="showSection('about')">About</a>
-    <a onclick="showSection('projects')">Project</a>
-    <a href="aboutme.html">AboutMe</a>
-  </nav>
+<div>안수연</div>
+<nav>
+<a onclick="showSection('about')">About</a>
+<a onclick="showSection('projects')">Project</a>
+<a href="aboutme.html">AboutMe</a>
+</nav>
 </header>
 
 <section class="hero">
-  <h1 id="hero-text">Cloud Infrastructure Engineer</h1>
-  <p>Designing scalable, automated, and secure systems</p>
+<h1 id="hero-text"></h1>
+<p>Designing scalable, automated, and secure systems</p>
 </section>
 
 <section id="about" class="section">
-  <h2>Experiences & Activities</h2>
-  <div class="grid-2">
-    <div>
-      <h3>Experiences</h3>
-      <div class="timeline">
-        </div>
-    </div>
-    <div>
-      <h3>Activities</h3>
-      <div class="timeline">
-        </div>
-    </div>
-  </div>
+<h2>Experiences & Activities</h2>
+
+<div class="grid-2">
+
+<div>
+<h3 style="margin-bottom:25px">Experiences</h3>
+<div class="timeline">
+<div class="timeline-item"><div class="timeline-date">2025.12 - 2026.04</div><div>Sesac AI 활용 클라우드·데이터 엔지니어 과정 수료.</div></div>
+<div class="timeline-item"><div class="timeline-date">2025.09 - 2025.11</div><div>AI Challenge Season2 경진대회 우수상.</div></div>
+<div class="timeline-item"><div class="timeline-date">2025.06 - 2025.08</div><div>SKT FLY AI 수료.</div></div>
+<div class="timeline-item"><div class="timeline-date">2025.03 - 2025.08</div><div>빅데이터 분석 학회 BDA 데이터 분석 입문반 수료.</div></div>
+<div class="timeline-item"><div class="timeline-date">2025.04 - 2025.06</div><div>미래 내일 일경험 : 제로 인턴 4기 수료.</div></div>
+<div class="timeline-item"><div class="timeline-date">2024.03 - 2024.06</div><div>IoT 가전 아이디어 경진대회 장려상.</div></div>
+</div>
+</div>
+
+<div>
+<h3 style="margin-bottom:25px">Activities</h3>
+<div class="timeline">
+<div class="timeline-item"><div class="timeline-date">2025.09 - 2025.11</div><div>(주)스팩스페이스 AI 학습용 영상 데이터 라벨링 아르바이트.</div></div>
+<div class="timeline-item"><div class="timeline-date">2023.06 - 2024.08</div><div>동국대학교 정보통신공학과 학생회 기획국원.</div></div>
+<div class="timeline-item"><div class="timeline-date">2023.07 - 2024.02</div><div>SPA브랜드 미쏘 신도림디큐브시티점 스탭.</div></div>
+<div class="timeline-item"><div class="timeline-date">2019.09 - 2021.12</div><div>감성커피 롯데캐슬3차점 아르바이트.</div></div>
+</div>
+</div>
+
+</div>
 </section>
 
 <section id="projects" class="section">
-  <h2>Projects</h2>
-  <div class="projects">
-    
-    <div class="card">
-      <h3>aespo: LLM 기반 운영 접근 제어 플랫폼</h3>
-      <p class="desc">LLM 에이전트를 활용한 승인 기반 임시 권한 자동 생성 및 제로 트러스트 보안 인프라</p>
-      <p class="role">Role: Cloud Architecture · LLM Agent · Security</p>
-      <div class="tag-container">
-        <span class="tag">AWS EKS</span>
-        <span class="tag">Teleport</span>
-        <span class="tag">LLM (Bedrock/OpenAI)</span>
-        <span class="tag">ArgoCD</span>
-        <span class="tag">Terraform</span>
-      </div>
-      <a href="project_aespo.html">View Details →</a>
-    </div>
+<h2>Projects</h2>
 
-    <div class="card">
-      <h3>7-Node WAS Infrastructure</h3>
-      <p class="desc">단일 서버 구조의 한계를 해결하기 위해 분산 웹 인프라 설계</p>
-      <a href="project1_was.html">View Details →</a>
-    </div>
+<div class="projects">
 
-    <div class="card">
-      <h3>AI Agent 기반 구인·구직 자동화 서비스 Ilowa</h3>
-      <p class="desc">OCR/STT + LLM 기반 오프라인 일자리 정보 디지털화 플랫폼</p>
-      <a href="project2_ilowa.html">View Details →</a>
-    </div>
+<!-- cards 그대로 유지 -->
 
-    <div class="card">
-      <h3>Kubernetes WordPress</h3>
-      <p class="desc">VM 기반 인프라를 Kubernetes 환경으로 확장한 컨테이너 플랫폼</p>
-      <a href="project3_k8s.html">View Details →</a>
-    </div>
+<div class="card">
+<h3>7-Node WAS Infrastructure</h3>
+<p class="desc">단일 서버 구조의 한계를 해결하기 위해 분산 웹 인프라 설계</p>
+<p class="role">Role: Infra Design · Networking · Architecture</p>
+<div class="tag-container">
+<span class="tag">VirtualBox</span>
+<span class="tag">HAProxy</span>
+<span class="tag">MySQL</span>
+<span class="tag">NFS</span>
+</div>
+<a href="project1_was.html">View Details →</a>
+</div>
 
-    <div class="card">
-      <h3>Terraform & Ansible Automation</h3>
-      <p class="desc">AWS 인프라 구축과 서버 설정을 자동화한 IaC 프로젝트</p>
-      <a href="project4_tf&as.html">View Details →</a>
-    </div>
+<div class="card">
+<h3>AI Agent 기반 구인·구직 자동화 서비스 Ilowa</h3>
+<p class="desc">OCR/STT + LLM 기반 오프라인 일자리 정보 디지털화 플랫폼</p>
+<p class="role">Role: Frontend · Infra</p>
+<div class="tag-container">
+<span class="tag">FastAPI</span>
+<span class="tag">Docker</span>
+<span class="tag">React</span>
+<span class="tag">JavaScript</span>
+</div>
+<a href="project2_ilowa.html">View Details →</a>
+</div>
 
-  </div>
+<div class="card">
+<h3>Kubernetes WordPress</h3>
+<p class="desc">VM 기반 인프라를 Kubernetes 환경으로 확장한 컨테이너 플랫폼</p>
+<p class="role">Role: K8s Architecture · YAML Design · Debugging</p>
+<div class="tag-container">
+<span class="tag">Kubernetes</span>
+<span class="tag">Ingress</span>
+<span class="tag">PVC</span>
+<span class="tag">ConfigMap</span>
+</div>
+<a href="project3_k8s.html">View Details →</a>
+</div>
+
+<div class="card">
+<h3>Terraform & Ansible Automation</h3>
+<p class="desc">AWS 인프라 구축과 서버 설정을 자동화한 IaC 프로젝트</p>
+<p class="role">Role: Cloud Architecture · IaC · Automation</p>
+<div class="tag-container">
+<span class="tag">Terraform</span>
+<span class="tag">Ansible</span>
+<span class="tag">AWS</span>
+<span class="tag">VPC</span>
+</div>
+<a href="project4_tf&as.html">View Details →</a>
+</div>
+
+</div>
 </section>
 
 <script>
-  function showSection(id){
-    document.querySelectorAll('.section').forEach(sec=>sec.classList.add('hidden'))
-    document.getElementById(id).classList.remove('hidden')
-    window.scrollTo({top:document.getElementById(id).offsetTop-80,behavior:'smooth'})
-  }
+const text = "Cloud Infrastructure Engineer";
+const container = document.getElementById("hero-text");
+
+text.split("").forEach((char, i) => {
+  const span = document.createElement("span");
+  span.textContent = char === " " ? "\u00A0" : char;
+
+  if ("Cloud".includes(char)) {
+    span.classList.add("highlight");
+  }
+
+  container.appendChild(span);
+
+  setTimeout(() => {
+    span.classList.add("show");
+  }, i * 70);
+});
+
+const aboutSection=document.querySelector('#about')
+
+window.addEventListener('scroll',()=>{
+const trigger=aboutSection.offsetTop-200
+if(window.scrollY>trigger){document.body.classList.add('dark')}
+else{document.body.classList.remove('dark')}
+})
+
+function showSection(id){
+document.querySelectorAll('.section').forEach(sec=>sec.classList.add('hidden'))
+document.getElementById(id).classList.remove('hidden')
+window.scrollTo({top:document.getElementById(id).offsetTop-80,behavior:'smooth'})
+}
 </script>
+
 </body>
 </html>
